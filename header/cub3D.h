@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/03 14:05:34 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:40:30 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,31 @@
 # include "messages.h"
 # include <stdlib.h>
 # include <math.h>
+# include "../minilibx_macos/mlx.h"
 
 # define HEIGHT 720
 # define WIDTH 1280
 # define LINE_LEN 26
 # define MOVE 10
+# define FLOOR 0
+# define WALL 1
 
-typedef struct s_fdf
+typedef struct s_cub
 {
 	t_matrix	*map;
 	char		*filename;
 	void		*mlx;
 	void		*win;
 	void		*img;
-	char		*addr;
+	//char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			len;
-	int			endian;
+	//int			endian;
 	int			xlen;
-	int			halfy;
-	int			offsetx;
-	int			offsety;
-}	t_fdf;
+	//int			halfy;
+	//int			offsetx;
+	//int			offsety;
+}	t_cub;
 
 #endif
