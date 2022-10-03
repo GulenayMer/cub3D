@@ -33,7 +33,7 @@ HEADER = 	./header
 
 OBJDIR =	 build/
 
-LIBDIR = 	../libft
+LIBDIR = 	libft
 
 SRCDIR =	src/
 
@@ -75,8 +75,6 @@ EXEC =		cub3D
 
 RUN =		./cub3D
 
-MAIN =		src/cub3D.c
-
 ################################################################################
 ################################### COLOURS ####################################
 ################################################################################
@@ -93,7 +91,7 @@ RESET = 	\033[0m
 
 $(EXEC): $(LIBFT) $(OBJ_PREFIXED)
 	$(MAKE) all -C $(MINILIBX_DIRECTORY)
-	$(CC) $(CFLAGS) $(MAIN) $(OBJ_PREFIXED) $(LIBRARIES) -I $(HEADER) -o $(EXEC)
+	$(CC) $(CFLAGS) $(OBJ_PREFIXED) $(LIBRARIES) -I $(HEADER) -o $(EXEC)
 
 $(OBJ_PREFIXED): build/%.o : src/%.c
 	mkdir -p $(OBJDIR)

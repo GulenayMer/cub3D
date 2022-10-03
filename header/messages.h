@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   messages.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 11:00:45 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/03 13:22:08 by jrocha           ###   ########.fr       */
+/*   Created: 2022/10/03 13:12:36 by jrocha            #+#    #+#             */
+/*   Updated: 2022/10/03 13:21:15 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3D.h"
 
-int	main(int argc, char **argv)
-{
-	if (argc < 2)
-	{
-		ft_printf(STDERR_FILENO, WRNG_NUM_ARGS1);
-		return (EXIT_FAILURE);
-	}
-	if (argc > 2)
-	{
-		ft_printf(STDERR_FILENO, WRNG_NUM_ARGS2);
-		return (EXIT_FAILURE);
-	}
-	if (argc == 2)
-	{
-		ft_printf(STDIN_FILENO, "%s\n", argv[1]);
-	}
-	return (EXIT_SUCCESS);
-}
+#ifndef MESSAGES_H
+# define MESSAGES_H
+
+# define WRNG_NUM_ARGS1 "cub3D: Incorrect number of arguments: \
+You must provide a .cub file.\n"
+
+# define WRNG_NUM_ARGS2 "cub3D: Incorrect number of arguments: \
+cub3D takes only one argument.\n"
+
+#endif
