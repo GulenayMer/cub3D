@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:57:34 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/04 13:53:42 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/04 17:16:27 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@
 static char	*readjoin(char *buf, char *reader, int rl);
 static char	*linecatcher(char **reader);
 static char	*newlinegen(char *str, int *i);
-static char	*linecatcher(char **reader);
+static char	*freepointer(char *str, char *ret);
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int check)
 {
 	static char	*reader;
 	char		buf[100 + 1];
 	int			readlen;
 
+	if (check == 1)
+	{
+		return (freepointer(reader, NULL));
+	}
 	if (fd < 0)
 		return (NULL);
 	readlen = read(fd, buf, 100);

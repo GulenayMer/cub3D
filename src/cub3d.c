@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:00:45 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/04 14:07:46 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/04 17:03:52 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	cub3d_argc_ctrl(int argc);
 
 int	main(int argc, char **argv)
 {
-	int	error_check;
+	int		error_check;
 	t_data	*data;
 	t_cell	*cell;
 	int x, y;
@@ -26,6 +26,11 @@ int	main(int argc, char **argv)
 	if (error_check == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	data = cub3d_init(argv[1]);
+	if (data == NULL)
+	{
+		ft_printf(STDERR_FILENO, ERROR_INVALID_MAP, argv[1]);
+		return (cub3d_destroyer(data, EXIT_FAILURE));
+	}
 	x = 0;
 	y = 0;
 	while (y < data->map->count_y)
@@ -40,10 +45,9 @@ int	main(int argc, char **argv)
 		x = 0;
 		y += 1;
 	}
-	
 	if (error_check == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	return (cub3d_destroyer(data, EXIT_SUCCESS));
 }
 
 static int	cub3d_error_mgmt(int argc, char **argv)

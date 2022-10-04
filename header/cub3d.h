@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/04 14:13:18 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/04 17:05:27 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,21 @@ typedef struct s_data
 	int			len;
 	int			xlen;
 	int			endian;
+	int			error_check;
 }	t_data;
 
 typedef enum e_type {
-	WALL,
-	PLAYER,
-	FLOOR,
+	INVALID = -2,
+	TYPE_NOTHING = -1,
+	TYPE_FLOOR = 0,
+	TYPE_WALL,
+	TYPE_SPRITE,
+	TYPE_DOOR,
+	TYPE_N,
+	TYPE_E,
+	TYPE_S,
+	TYPE_W,
+	TYPE_NEWLINE,
 }	t_type;
 
 typedef struct s_cell
@@ -58,5 +67,6 @@ typedef struct s_cell
 }	t_cell;
 
 t_data	*cub3d_init(char *map);
+int		cub3d_destroyer(t_data *data, int exit_status);
 
 #endif
