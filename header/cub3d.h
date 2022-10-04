@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/03 13:25:57 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/04 13:26:13 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,27 @@
 # define CUB3D_H
 
 # include "../libft/header/libft.h"
-# include "../../libft/header/datastructures.h"
+# include "../libft/header/datastructures.h"
 # include "messages.h"
+# include "../minilibx_linux/mlx.h"
+# include "../minilibx_macos/mlx.h"
 # include <stdlib.h>
 # include <math.h>
 
-# define HEIGHT 720
-# define WIDTH 1280
+# if !defined (HEIGHT)
+#  define HEIGHT 720
+# endif
+
+# if !defined (WIDTH)
+#  define WIDTH 1280
+# endif
+
 # define LINE_LEN 26
 # define MOVE 10
 
-typedef struct s_fdf
+typedef struct s_data
 {
 	t_matrix	*map;
-	char		*filename;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -35,11 +42,21 @@ typedef struct s_fdf
 	int			bits_per_pixel;
 	int			line_length;
 	int			len;
-	int			endian;
 	int			xlen;
-	int			halfy;
-	int			offsetx;
-	int			offsety;
-}	t_fdf;
+	int			endian;
+}	t_data;
+
+typedef enum e_type {
+	WALL,
+	PLAYER,
+	FLOOR,
+}	t_type;
+
+typedef struct s_cell
+{
+	t_type	type;
+}	t_cell;
+
+t_data	*cub3d_init(char *map);
 
 #endif
