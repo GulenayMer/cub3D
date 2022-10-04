@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/03 15:40:30 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:24:42 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,47 @@
 # include "../libft/header/libft.h"
 # include "../libft/header/datastructures.h"
 # include "messages.h"
+# include "../minilibx_linux/mlx.h"
+# include "../minilibx_macos/mlx.h"
 # include <stdlib.h>
 # include <math.h>
-# include "../minilibx_macos/mlx.h"
 
-# define HEIGHT 720
-# define WIDTH 1280
+# if !defined (HEIGHT)
+#  define HEIGHT 720
+# endif
+
+# if !defined (WIDTH)
+#  define WIDTH 1280
+# endif
+
 # define LINE_LEN 26
 # define MOVE 10
-# define FLOOR 0
-# define WALL 1
 
-typedef struct s_cub
+typedef struct s_data
 {
 	t_matrix	*map;
-	char		*filename;
 	void		*mlx;
 	void		*win;
 	void		*img;
-	//char		*addr;
+	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			len;
-	//int			endian;
 	int			xlen;
-	//int			halfy;
-	//int			offsetx;
-	//int			offsety;
-}	t_cub;
+	int			endian;
+}	t_data;
+
+typedef enum e_type {
+	WALL,
+	PLAYER,
+	FLOOR,
+}	t_type;
+
+typedef struct s_cell
+{
+	t_type	type;
+}	t_cell;
+
+t_data	*cub3d_init(char *map);
 
 #endif

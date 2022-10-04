@@ -19,9 +19,13 @@ endif
 
 CC =		gcc
 
-CFLAGS =	-Wall -Wextra -Werror 
+HEIGHT = 	$(shell xdpyinfo | awk '/dimensions/{print $$2}' | cut -d 'x' -f1)
 
-DEBUG =		-Wall -Wextra -Werror -g
+WIDTH = 	$(shell xdpyinfo | awk '/dimensions/{print $$2}' | cut -d 'x' -f2)
+
+CFLAGS =	-Wall -Wextra -Werror -D HEIGHT=$(HEIGHT) -D WIDTH=$(WIDTH)
+
+DEBUG =		-Wall -Wextra -Werror -g -D HEIGHT=$(HEIGHT) -D WIDTH=$(WIDTH)
 
 VAL =		valgrind -s --leak-check=full --show-leak-kinds=all
 
@@ -41,7 +45,7 @@ SRCDIR =	src/
 ################################### LIBRARIES ##################################
 ################################################################################
 
-FT_INC	= 		-I ../libft/header
+FT_INC	= 		-I $(LIBDIR)/header
 
 LIBFT = 		$(LIBDIR)/libft.a
 
@@ -53,19 +57,17 @@ INCLUDES = 		$(FT_INC) $(MLX_INC)
 ################################## SRCS & OBJS #################################
 ################################################################################
 ifeq ($(uname_S), Linux)
-	SRCS :=		cub3D.c		\
+	SRCS =		$(SRCDIR)cub3d.c		\
+				$(SRCDIR)cub3d_def.c	\
 				
 
 endif
 ifeq ($(uname_S), Darwin)
-	SRCS :=		cub3D.c		\
+	SRCS =		$(SRCDIR)cub3d.c		\
+				$(SRCDIR)cub3d_def.c	\
 				
 
 endif
-
-OBJS :=		${SRCS:.c=.o}
-
-OBJ_PREFIXED := $(addprefix $(OBJDIR), $(OBJS))
 
 ################################################################################
 #################################### PROGRAM ###################################
@@ -89,9 +91,9 @@ RESET = 	\033[0m
 #################################### RULES #####################################
 ################################################################################
 
-$(EXEC): $(LIBFT) $(OBJ_PREFIXED)
-	$(MAKE) all -C $(MINILIBX_DIRECTORY)
-	$(CC) $(CFLAGS) $(OBJ_PREFIXED) $(LIBRARIES) -I $(HEADER) -o $(EXEC)
+$(EXEC): $(LIBFT)
+	$(MAKE) all -C $(MINILIBX_DIRECTORY);\
+	$(CC) $(CFLAGS) $(SRCS) $(LIBRARIES) -I $(HEADER) -o $(EXEC)
 
 $(OBJ_PREFIXED): build/%.o : src/%.c
 	mkdir -p $(OBJDIR)
@@ -117,3 +119,7 @@ fclean: clean
 	rm -f $(CHECKER)
 
 re: fclean all
+
+debug: re $(LIBFT)
+	$(MAKE) all -C $(MINILIBX_DIRECTORY);\
+	$(CC) $(DEBUG) $(SRCS) $(LIBRARIES) -I $(HEADER) -o $(EXEC)

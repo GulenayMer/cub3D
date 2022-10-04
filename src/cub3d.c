@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:00:45 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/04 15:25:50 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:07:46 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 		x = 0;
 		y += 1;
 	}
+	
 	if (error_check == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
