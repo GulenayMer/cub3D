@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_linux.c                                      :+:      :+:    :+:   */
+/*   cub3d_set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 15:56:28 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/10 14:10:27 by jrocha           ###   ########.fr       */
+/*   Created: 2022/10/10 09:30:51 by jrocha            #+#    #+#             */
+/*   Updated: 2022/10/10 13:06:52 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-int	cub3d_destroyer(t_data *data, int exit_status)
+int	cub3d_draw_image(void *input)
 {
-	if (exit_status == EXIT_SUCCESS)
+	int		x;
+	int		y;
+	t_data	*data;
+
+	data = (t_data*) input;
+	y = 0;
+	ft_bzero(data->addr, (WIDTH * HEIGHT) * sizeof(int));
+	//fdf_set_coordinates(fdf);
+	while (y < data->map->count_y)
 	{
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->win);
-		mlx_destroy_display(data->mlx);
-		if (data->mlx != NULL)
-			free(data->mlx);
+		x = 0;
+		while (x < data->map->count_x)
+		{
+			//fdf_draw_lines(fdf, x, y);
+			cub3d_mlx_pixel_put(data, x, y, 0xFFFFFF);
+			x++;
+		}
+		y++;
 	}
-	if (data != NULL)
-		matrix_cleanup(data->map);
-	if (data != NULL)
-		free(data);
-	if (exit_status == EXIT_SUCCESS)
-		exit(exit_status);
-	else
-		return (exit_status);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	return (0);
 }

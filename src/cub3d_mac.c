@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:56:25 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/04 17:20:29 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/10 14:10:36 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,8 @@ int	fdf_destroyer(t_data *data, int exit_status)
 		matrix_cleanup(data->map);
 	if (data != NULL)
 		free(data);
-	exit(exit_status);
+	if (exit_status == EXIT_SUCCESS)
+		exit(exit_status);
+	else
+		return (exit_status);
 }
