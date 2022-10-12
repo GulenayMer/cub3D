@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:56:28 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/06 10:00:35 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/12 21:06:55 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ int	cub3d_destroyer(t_data *data, int exit_status)
 		matrix_cleanup(data->map);
 	if (data != NULL)
 		free(data);
-	exit(exit_status);
+	if (exit_status == EXIT_SUCCESS)
+		exit(exit_status);
+	else
+		return (exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:12:36 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/03 14:00:51 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/04 16:57:08 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ cub3D takes only one argument.\n"
 
 # define WRNG_TYPE "cub3D: Incorrect file type: \
 You must provide a .cub file.\n"
+
+# define ERROR_INVALID_MAP "Error\ncub3D: %s contains invalid characters.\n"
 
 #endif
