@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:00:45 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/04 14:07:46 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/06 11:28:51 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ static int	cub3d_argc_ctrl(int argc);
 
 int	main(int argc, char **argv)
 {
-	int	error_check;
+	int		error_check;
 	t_data	*data;
 	t_cell	*cell;
-	int x, y;
+	int		x;
+	int		y;
 
 	error_check = cub3d_error_mgmt(argc, argv);
 	if (error_check == EXIT_FAILURE)
@@ -32,15 +33,16 @@ int	main(int argc, char **argv)
 	{
 		while (x < data->xlen)
 		{
-			cell = matrix_get(data->map, x, y);
+			cell= matrix_get(data->map, x, y);
 			ft_printf(STDIN_FILENO, "%i", cell->type);
 			x += 1;
 		}
 		ft_printf(STDIN_FILENO, "\n");
+/* 		if (check_first_line(cell, data, x, y) != 1)
+				ft_printf(STD_ERR, "no wall"); */
 		x = 0;
 		y += 1;
 	}
-	
 	if (error_check == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

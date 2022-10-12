@@ -59,14 +59,16 @@ INCLUDES = 		$(FT_INC) $(MLX_INC)
 ifeq ($(uname_S), Linux)
 	SRCS =		$(SRCDIR)cub3d.c		\
 				$(SRCDIR)cub3d_def.c	\
+				$(SRCDIR)cub3d_linux.c	\
+				$(SRCDIR)wall_check.c	\
 				
 
 endif
 ifeq ($(uname_S), Darwin)
 	SRCS =		$(SRCDIR)cub3d.c		\
 				$(SRCDIR)cub3d_def.c	\
+				$(SRCDIR)cub3d_mac.c	\
 				
-
 endif
 
 ################################################################################

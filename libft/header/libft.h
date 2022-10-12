@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 10:02:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/09/09 17:04:40 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/06 09:58:01 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			hexprinter(int fd, char *flags, unsigned int num);
 int			pointerprinter(int fd, unsigned long ptr);
 int			percentprinter(int fd, char *flags);
 int			ft_printf(int fd, const char *s, ...);
-char		*get_next_line(int fd);
+char		*get_next_line(int fd, int check);
 int			ft_power(int base, int exp);
 int			ft_convertfromhexa(char *hexa);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/04 15:24:42 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:04:59 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../minilibx_macos/mlx.h"
 # include <stdlib.h>
 # include <math.h>
+#include <stdio.h>
 
 # if !defined (HEIGHT)
 #  define HEIGHT 720
@@ -44,19 +45,33 @@ typedef struct s_data
 	int			len;
 	int			xlen;
 	int			endian;
+	int			error_check;
 }	t_data;
 
 typedef enum e_type {
-	WALL,
-	PLAYER,
-	FLOOR,
+	INVALID = -2,
+	TYPE_NOTHING = -1,
+	TYPE_FLOOR = 0,
+	TYPE_WALL,
+	TYPE_SPRITE,
+	TYPE_DOOR,
+	TYPE_N,
+	TYPE_E,
+	TYPE_S,
+	TYPE_W,
+	TYPE_NEWLINE,
 }	t_type;
 
 typedef struct s_cell
 {
 	t_type	type;
+	char	*line;
 }	t_cell;
 
 t_data	*cub3d_init(char *map);
+int		cub3d_destroyer(t_data *data, int exit_status);
+
+/* check walls */
+int	check_first_line(t_cell *cell, t_data *data, int x, int y);
 
 #endif
