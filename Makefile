@@ -19,9 +19,9 @@ endif
 
 CC =		gcc
 
-HEIGHT = 	$(shell xdpyinfo | awk '/dimensions/{print $$2}' | cut -d 'x' -f1)
+HEIGHT = 	$(shell xdpyinfo | awk '/dimensions/{print $$2}' | cut -d 'x' -f2)
 
-WIDTH = 	$(shell xdpyinfo | awk '/dimensions/{print $$2}' | cut -d 'x' -f2)
+WIDTH = 	$(shell xdpyinfo | awk '/dimensions/{print $$2}' | cut -d 'x' -f1)
 
 CFLAGS =	-Wall -Wextra -Werror -D HEIGHT=$(HEIGHT) -D WIDTH=$(WIDTH)
 
@@ -57,17 +57,25 @@ INCLUDES = 		$(FT_INC) $(MLX_INC)
 ################################## SRCS & OBJS #################################
 ################################################################################
 ifeq ($(uname_S), Linux)
-	SRCS =		$(SRCDIR)cub3d.c		\
-				$(SRCDIR)cub3d_def.c	\
-				$(SRCDIR)cub3d_linux.c	\
+	SRCS =		$(SRCDIR)cub3d.c			\
+				$(SRCDIR)cub3d_def.c		\
+				$(SRCDIR)cub3d_mlx.c		\
+				$(SRCDIR)cub3d_linux.c		\
+				$(SRCDIR)cub3d_set.c		\
+				$(SRCDIR)cub3d_keys.c		\
+				$(SRCDIR)cub3d_pop_map.c	\
 
 endif
 ifeq ($(uname_S), Darwin)
-	SRCS =		$(SRCDIR)cub3d.c		\
-				$(SRCDIR)cub3d_def.c	\
-				$(SRCDIR)cub3d_mac.c	\
-				
+	SRCS =		$(SRCDIR)cub3d.c			\
+				$(SRCDIR)cub3d_def.c		\
+				$(SRCDIR)cub3d_mlx.c		\
+				$(SRCDIR)cub3d_mac.c		\
+				$(SRCDIR)cub3d_set.c		\
+				$(SRCDIR)cub3d_keys.c		\
+				$(SRCDIR)cub3d_pop_map.c	\
 
+				
 endif
 
 ################################################################################
