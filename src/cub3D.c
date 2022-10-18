@@ -6,11 +6,11 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:00:45 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/04 15:25:50 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/06 09:47:43 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3d.h"
+/* #include "../header/cub3d.h"
 
 static int	cub3d_error_mgmt(int argc, char **argv);
 static int	cub3d_argc_ctrl(int argc);
@@ -85,3 +85,4 @@ static int	cub3d_argc_ctrl(int argc)
 	}
 	return (EXIT_SUCCESS);
 }
+ */

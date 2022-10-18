@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:00:45 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/04 15:25:50 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:23:24 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,23 @@ static int	cub3d_argc_ctrl(int argc);
 
 int	main(int argc, char **argv)
 {
-	int	error_check;
+	int		error_check;
 	t_data	*data;
-	t_cell	*cell;
-	int x, y;
 
 	error_check = cub3d_error_mgmt(argc, argv);
 	if (error_check == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	data = cub3d_init(argv[1]);
-	x = 0;
-	y = 0;
-	while (y < data->map->count_y)
+	if (data == NULL)
 	{
-		while (x < data->xlen)
-		{
-			cell = matrix_get(data->map, x, y);
-			ft_printf(STDIN_FILENO, "%i", cell->type);
-			x += 1;
-		}
-		ft_printf(STDIN_FILENO, "\n");
-		x = 0;
-		y += 1;
+		ft_printf(STDERR_FILENO, ERROR_INVALID_MAP, argv[1]);
+		return (cub3d_destroyer(data, EXIT_FAILURE));
 	}
-	if (error_check == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	mlx_loop_hook(data->mlx, cub3d_draw_image, data);
+	mlx_hook(data->win, 2, 1L << 0L, cub3d_key_press, data);
+	mlx_hook(data->win, 17, 0L, cub3d_close_win, data);
+	mlx_loop(data->mlx);
+	return (cub3d_destroyer(data, EXIT_SUCCESS));
 }
 
 static int	cub3d_error_mgmt(int argc, char **argv)
