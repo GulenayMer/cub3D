@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:30:51 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/19 10:03:15 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/19 15:19:59 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	cub3d_draw_image(void *input)
 
 	data = (t_data *) input;
 	y = data->map->count_y / 2;
-	ft_bzero(data->image->addr, (WIDTH * HEIGHT) * sizeof(int));
+	ft_bzero(data->image.addr, (WIDTH * HEIGHT) * sizeof(int));
 	while (y < data->map->count_y)
 	{
 		x = 0;
@@ -31,6 +31,6 @@ int	cub3d_draw_image(void *input)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->image.img, 0, 0);
 	return (0);
 }

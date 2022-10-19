@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/19 14:21:15 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:05:56 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,24 +91,15 @@ typedef struct s_image
 
 typedef struct s_ray
 {
-	t_pos		*pos;
-	t_pos		*delta;
-	t_pos		*side;
-	t_coord		*map;
-	t_coord		*step;
+	t_pos		pos;
+	t_pos		delta;
+	t_pos		side_dist;
+	t_coord		map;
+	t_coord		step;
 	double		wall_dist;
 	int			side;
 	int			hit;
 }	t_ray;
-
-typedef struct s_draw
-{
-	int			line_height;
-	int			start;
-	int			end;
-	t_colour	*colour;
-	char		*hex_colour
-}	t_draw;
 
 typedef struct s_colour
 {
@@ -117,18 +108,27 @@ typedef struct s_colour
 	int			blue;
 }	t_colour;
 
+typedef struct s_draw
+{
+	int			line_height;
+	int			start;
+	int			end;
+	t_colour	*colour;
+	int			hex_colour;
+}	t_draw;
+
 typedef struct s_data
 {
 	t_matrix	*map;
 	t_textures	textures;
-	t_pos		*plane;
-	t_pos		*direction;
-	t_pos		*player;
-	t_ray		*ray;
-	t_fps		*fps;
-	t_draw		*draw;
+	t_pos		plane;
+	t_pos		direction;
+	t_pos		player;
+	t_ray		ray;
+	t_fps		fps;
+	t_draw		draw;
 	double		camera_x;
-	t_image		*image;
+	t_image		image;
 	void		*mlx;
 	void		*win;
 	int			xlen;
@@ -144,5 +144,6 @@ void	cub3d_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		cub3d_draw_image(void *input);
 int		cub3d_key_press(int key, t_data *data);
 int		cub3d_close_win(t_data *data);
-
+int		cub3d_raycast(void *input);
+int		cub3d_check_square(t_data *data, t_coord map);
 #endif
