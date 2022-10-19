@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/19 16:05:56 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:59:29 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "../minilibx_linux/mlx.h"
 # include "../minilibx_macos/mlx.h"
 # include <stdlib.h>
+# include <stdio.h>
+# include <sys/time.h>
 # include <math.h>
 
 # if !defined (HEIGHT)
@@ -76,8 +78,11 @@ typedef struct s_pos
 
 typedef struct s_fps
 {
-	double		cur_time;
-	double		old_time;
+	long long	cur_time;
+	long long	old_time;
+	double		frame_time;
+	double		move_speed;
+	double		rotate_speed;
 }	t_fps;
 
 typedef struct s_image
@@ -145,5 +150,5 @@ int		cub3d_draw_image(void *input);
 int		cub3d_key_press(int key, t_data *data);
 int		cub3d_close_win(t_data *data);
 int		cub3d_raycast(void *input);
-int		cub3d_check_square(t_data *data, t_coord map);
+int		cub3d_check_square(t_data *data, int x, int y);
 #endif

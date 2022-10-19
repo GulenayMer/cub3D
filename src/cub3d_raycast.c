@@ -6,18 +6,18 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:49 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/19 16:06:54 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:58:15 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-int	cub3d_check_square(t_data *data, t_coord map)
+int	cub3d_check_square(t_data *data, int x, int y)
 {
 	int		ret;
 	t_cell	*cell;
 
-	cell = (t_cell *) matrix_get(data->map, map.x, map.y);
+	cell = (t_cell *) matrix_get(data->map, x, y);
 	ret = cell->type;
 	return (ret);
 }
@@ -100,6 +100,16 @@ void	cub3d_init_direction(t_data *data)
 	}	
 }
 
+long long	get_time(void)
+{
+	struct timeval	time;
+	long long		t_ms;
+
+	gettimeofday(&time, NULL);
+	t_ms = (time.tv_sec * 1000 + time.tv_usec / 1000);
+	return (t_ms);
+}
+
 void	cub3d_init_plane(t_data *data)
 {
 	if (data->direction.y == -1)
@@ -147,6 +157,8 @@ int	cub3d_raycast(void *input)
 
 	x = 0;
 	data = (t_data *) input;
+	data->fps.cur_time = 0;
+	data->fps.cur_time = 0;
 	cub3d_find_player(data);
 	cub3d_init_direction(data);
 	cub3d_init_plane(data);
@@ -194,7 +206,7 @@ int	cub3d_raycast(void *input)
 				data->ray.map.y += data->ray.step.y;
 				data->ray.side = 1;
 			}
-        	if (cub3d_check_square(data, data->ray.map) > 0)
+        	if (cub3d_check_square(data,(int) data->ray.map.x, (int) data->ray.map.y) > 0)
 				data->ray.hit = 1;
       	} 
 		// Fourth Part
@@ -217,10 +229,15 @@ int	cub3d_raycast(void *input)
 			data->draw.hex_colour = RED3 / 2;
 		// Seventh Part: Draw
 		cub3d_draw_line(data, x, data->draw);
-		// Eight Part: FPS
-		data->fps.old_time = data->fps.cur_time;
-		data->fps.cur_time
+		
 	}
+	// Eight Part: FPS
+	data->fps.old_time = data->fps.cur_time;
+	data->fps.cur_time = get_time();
+	data->fps.frame_time = (data->fps.cur_time - data->fps.old_time) / 1000.0;
+	printf("FPS: %f\n", 1.0 / data->fps.frame_time);
+	data->fps.move_speed = data->fps.frame_time * 5.0;
+	data->fps.rotate_speed = data->fps.frame_time * 3.0;
 	mlx_put_image_to_window(data->mlx, data->win, data->image.img, 0, 0);
 	return (EXIT_SUCCESS);
 }
