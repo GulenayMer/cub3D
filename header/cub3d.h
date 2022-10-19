@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/10 15:20:08 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/18 17:20:00 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,24 @@ typedef struct s_int_xy
 	int		x;
 	int		y;
 }	t_int_xy;
+
+typedef struct s_plane
+{
+	double		x;
+	double		y;
+}	t_plane;
+
+typedef struct s_dir
+{
+	double		x;
+	double		y;
+}	t_dir;
+
+typedef struct s_pos
+{
+	double		x;
+	double		y;
+}	t_pos;
 
 typedef struct s_data
 {
