@@ -57,14 +57,16 @@ INCLUDES = 		$(FT_INC) $(MLX_INC)
 ################################## SRCS & OBJS #################################
 ################################################################################
 ifeq ($(uname_S), Linux)
-	SRCS =		$(SRCDIR)cub3d.c			\
-				$(SRCDIR)cub3d_def.c		\
-				$(SRCDIR)cub3d_mlx.c		\
-				$(SRCDIR)cub3d_linux.c		\
-				$(SRCDIR)cub3d_set.c		\
-				$(SRCDIR)cub3d_keys.c		\
-				$(SRCDIR)cub3d_pop_map.c	\
-				$(SRCDIR)cub3d_raycast.c	\
+	SRCS =		$(SRCDIR)cub3d.c				\
+				$(SRCDIR)cub3d_def.c			\
+				$(SRCDIR)cub3d_mlx.c			\
+				$(SRCDIR)cub3d_linux.c			\
+				$(SRCDIR)cub3d_set.c			\
+				$(SRCDIR)cub3d_keys.c			\
+				$(SRCDIR)cub3d_pop_map.c		\
+				$(SRCDIR)cub3d_raycast.c		\
+				$(SRCDIR)cub3d_raycast_setup.c	\
+				$(SRCDIR)cub3d_utils.c			\
 
 endif
 ifeq ($(uname_S), Darwin)
@@ -76,6 +78,8 @@ ifeq ($(uname_S), Darwin)
 				$(SRCDIR)cub3d_keys.c		\
 				$(SRCDIR)cub3d_pop_map.c	\
 				$(SRCDIR)cub3d_raycast.c	\
+				$(SRCDIR)cub3d_raycast_setup.c	\
+				$(SRCDIR)cub3d_utils.c			\
 				
 endif
 

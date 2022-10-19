@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/19 16:59:29 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:01:58 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,15 +140,22 @@ typedef struct s_data
 	int			error_check;
 }	t_data;
 
-t_data	*cub3d_init(char *map);
-int		cub3d_fill_map(t_data *data, char *line, t_matrix *matrix,
-			int y);
-int		cub3d_destroyer(t_data *data, int exit_status);
-void	cub3d_mlx_init(t_data *data);
-void	cub3d_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		cub3d_draw_image(void *input);
-int		cub3d_key_press(int key, t_data *data);
-int		cub3d_close_win(t_data *data);
-int		cub3d_raycast(void *input);
-int		cub3d_check_square(t_data *data, int x, int y);
+t_data		*cub3d_init(char *map);
+int			cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y);
+int			cub3d_destroyer(t_data *data, int exit_status);
+void		cub3d_mlx_init(t_data *data);
+void		cub3d_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			cub3d_draw_image(void *input);
+int			cub3d_key_press(int key, t_data *data);
+int			cub3d_close_win(t_data *data);
+int			cub3d_raycast(t_data *data);
+int			cub3d_check_square(t_data *data, int x, int y);
+void		cub3d_find_player(t_data *data);
+int			cub3d_direction_set(t_data *data, t_cell *cell);
+void		cub3d_init_direction(t_data *data);
+void		cub3d_init_plane(t_data *data);
+long long	get_time(void);
+void		cub3d_draw_line(t_data *data, int col, t_draw draw);
+void		cub3d_check_fps(t_data *data);
+
 #endif
