@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/19 10:00:58 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:21:15 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/header/datastructures.h"
 # include "messages.h"
 # include "controls.h"
+# include "colours.h"
 # include "../minilibx_linux/mlx.h"
 # include "../minilibx_macos/mlx.h"
 # include <stdlib.h>
@@ -61,29 +62,23 @@ typedef struct s_cell
 	t_type	type;
 }	t_cell;
 
-typedef struct s_int_xy
+typedef struct s_coord
 {
 	int		x;
 	int		y;
-}	t_int_xy;
-
-typedef struct s_plane
-{
-	double		x;
-	double		y;
-}	t_plane;
-
-typedef struct s_dir
-{
-	double		x;
-	double		y;
-}	t_dir;
+}	t_coord;
 
 typedef struct s_pos
 {
 	double		x;
 	double		y;
 }	t_pos;
+
+typedef struct s_fps
+{
+	double		cur_time;
+	double		old_time;
+}	t_fps;
 
 typedef struct s_image
 {
@@ -94,17 +89,48 @@ typedef struct s_image
 	int			endian;
 }	t_image;
 
+typedef struct s_ray
+{
+	t_pos		*pos;
+	t_pos		*delta;
+	t_pos		*side;
+	t_coord		*map;
+	t_coord		*step;
+	double		wall_dist;
+	int			side;
+	int			hit;
+}	t_ray;
+
+typedef struct s_draw
+{
+	int			line_height;
+	int			start;
+	int			end;
+	t_colour	*colour;
+	char		*hex_colour
+}	t_draw;
+
+typedef struct s_colour
+{
+	int			red;
+	int			green;
+	int			blue;
+}	t_colour;
+
 typedef struct s_data
 {
 	t_matrix	*map;
 	t_textures	textures;
-	t_plane		*plane;
-	t_dir		*direction;
+	t_pos		*plane;
+	t_pos		*direction;
 	t_pos		*player;
+	t_ray		*ray;
+	t_fps		*fps;
+	t_draw		*draw;
+	double		camera_x;
 	t_image		*image;
 	void		*mlx;
 	void		*win;
-	int			len;
 	int			xlen;
 	int			error_check;
 }	t_data;

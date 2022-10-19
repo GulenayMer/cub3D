@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_pop_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:19:11 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/10 17:17:14 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/19 12:49:44 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
 static void		*cub3d_new_cell(t_data *data, char line, t_matrix *matrix,
-					t_int_xy coord);
+					t_coord coord);
 static void		cub3d_new_cell_type(t_data *data, t_cell *new, char cell);
 
 int	cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y)
 {
-	t_int_xy	coord;
+	t_coord	coord;
 
 	coord.x = 0;
 	coord.y = y;
@@ -35,7 +35,7 @@ int	cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y)
 }
 
 static	void	*cub3d_new_cell(t_data *data, char cell, t_matrix *matrix,
-						t_int_xy coord)
+						t_coord coord)
 {
 	t_cell	*new;
 
