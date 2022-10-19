@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/18 17:20:00 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/19 10:00:58 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,27 @@ typedef struct s_pos
 	double		y;
 }	t_pos;
 
-typedef struct s_data
+typedef struct s_image
 {
-	t_matrix	*map;
-	t_textures	textures;
-	void		*mlx;
-	void		*win;
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
+	int			endian;
+}	t_image;
+
+typedef struct s_data
+{
+	t_matrix	*map;
+	t_textures	textures;
+	t_plane		*plane;
+	t_dir		*direction;
+	t_pos		*player;
+	t_image		*image;
+	void		*mlx;
+	void		*win;
 	int			len;
 	int			xlen;
-	int			endian;
 	int			error_check;
 }	t_data;
 
