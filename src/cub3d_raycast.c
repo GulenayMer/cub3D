@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:49 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/20 10:34:57 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:30:21 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ int	cub3d_raycast(t_data *data)
 	int		x;
 
 	x = 0;
-	data->fps.cur_time = 0;
-	data->fps.cur_time = 0;
-	cub3d_find_player(data);
-	cub3d_init_direction(data);
-	cub3d_init_plane(data);
+	//cub3d_find_player(data);
+	//cub3d_init_dir_plane(data);
 	while (x < WIDTH)
 	{
 		cub3d_raycast_pos_def(data, x);
@@ -42,9 +39,11 @@ int	cub3d_raycast(t_data *data)
 
 void	cub3d_raycast_pos_def(t_data *data, int x)
 {
-	data->camera_x = 2 * x / (double) data->xlen - 1;
+	data->camera_x = 2 * x / (double) WIDTH - 1;
 	data->ray.pos.x = data->direction.x + data->plane.x * data->camera_x;
 	data->ray.pos.y = data->direction.y + data->plane.y * data->camera_x;
+	data->ray.map.x = (int) data->player.x;
+	data->ray.map.y = (int) data->player.y;
 	if (data->ray.pos.x == 0)
 		data->ray.delta.x = 1e30;
 	else
@@ -60,25 +59,25 @@ void	cub3d_raycast_side_def(t_data *data)
 	if (data->ray.pos.x < 0)
 	{
 		data->ray.step.x = -1;
-		data->ray.side_dist.x = (data->ray.pos.x - data->ray.map.x)
+		data->ray.side_dist.x = (data->player.x - data->ray.map.x)
 			* data->ray.delta.x;
 	}
 	else
 	{
 		data->ray.step.x = 1;
-		data->ray.side_dist.x = (data->ray.map.x + 1.0 - data->ray.pos.x)
+		data->ray.side_dist.x = (data->ray.map.x + 1.0 - data->player.x)
 			* data->ray.delta.x;
 	}
 	if (data->ray.pos.y < 0)
 	{
 		data->ray.step.y = -1;
-		data->ray.side_dist.y = (data->ray.pos.y - data->ray.map.y)
+		data->ray.side_dist.y = (data->player.y - data->ray.map.y)
 			* data->ray.delta.y;
 	}
 	else
 	{
 		data->ray.step.y = 1;
-		data->ray.side_dist.y = (data->ray.map.y + 1.0 - data->ray.pos.y)
+		data->ray.side_dist.y = (data->ray.map.y + 1.0 - data->player.y)
 			* data->ray.delta.y;
 	}
 }
@@ -119,8 +118,7 @@ void	cub3d_raycast_draw_def(t_data *data)
 	data->draw.end = data->draw.line_height / 2 + HEIGHT / 2;
 	if (data->draw.end >= HEIGHT)
 		data->draw.end = HEIGHT -1;
+	data->draw.hex_colour = RED3;
 	if (data->ray.side == 1)
-		data->draw.hex_colour = RED3;
-	else
-		data->draw.hex_colour = RED3 / 2;
+		data->draw.hex_colour = RED1;
 }

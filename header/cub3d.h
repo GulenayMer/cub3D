@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/19 18:01:58 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:58:01 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,9 @@ typedef struct s_data
 	t_matrix	*map;
 	t_textures	textures;
 	t_pos		plane;
+	t_pos		old_plane;
 	t_pos		direction;
+	t_pos		old_dir;
 	t_pos		player;
 	t_ray		ray;
 	t_fps		fps;
@@ -151,9 +153,9 @@ int			cub3d_close_win(t_data *data);
 int			cub3d_raycast(t_data *data);
 int			cub3d_check_square(t_data *data, int x, int y);
 void		cub3d_find_player(t_data *data);
-int			cub3d_direction_set(t_data *data, t_cell *cell);
-void		cub3d_init_direction(t_data *data);
-void		cub3d_init_plane(t_data *data);
+void		cub3d_direction_set(t_data *data, char cell);
+void		cub3d_init_dir_plane(t_data *data, t_coord coord, char cell);
+void		cub3d_init_plane(t_data *data, char cell);
 long long	get_time(void);
 void		cub3d_draw_line(t_data *data, int col, t_draw draw);
 void		cub3d_check_fps(t_data *data);

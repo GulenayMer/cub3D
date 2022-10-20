@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/10 15:55:44 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/20 11:41:29 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_data	*cub3d_init(char *map)
 	data = cub3d_setup(map);
 	if (data == NULL)
 		return (NULL);
+	data->fps.cur_time = 0;
+	data->fps.old_time = 0;
 	cub3d_mlx_init(data);
 	return (data);
 }

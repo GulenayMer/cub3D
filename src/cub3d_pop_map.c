@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:19:11 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/19 18:02:28 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:37:18 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void		*cub3d_new_cell(t_data *data, char line, t_matrix *matrix,
 					t_coord coord);
-static void		cub3d_new_cell_type(t_data *data, t_cell *new, char cell);
+static void		cub3d_new_cell_type(t_data *data, t_cell *new, char cell,
+					t_coord coord);
 
 int	cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y)
 {
@@ -45,24 +46,22 @@ static	void	*cub3d_new_cell(t_data *data, char cell, t_matrix *matrix,
 			return (NULL);
 	}
 	new = matrix_get(matrix, coord.x, coord.y);
-	cub3d_new_cell_type(data, new, cell);
+	cub3d_new_cell_type(data, new, cell, coord);
 	return (EXIT_SUCCESS);
 }
 
-static void	cub3d_new_cell_type(t_data *data, t_cell *new, char cell)
+static void	cub3d_new_cell_type(t_data *data, t_cell *new, char cell,
+		t_coord coord)
 {
 	if (cell == '1')
 		new->type = TYPE_WALL;
 	else if (cell == '0')
 		new->type = TYPE_FLOOR;
-	else if (cell == 'N')
-		new->type = TYPE_N;
-	else if (cell == 'S')
-		new->type = TYPE_S;
-	else if (cell == 'E')
-		new->type = TYPE_E;
-	else if (cell == 'W')
-		new->type = TYPE_W;
+	else if (cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W')
+	{
+		cub3d_init_dir_plane(data, coord, cell);
+		new->type = TYPE_FLOOR;
+	}		
 	else if (cell == ' ' || cell == '\t')
 		new->type = TYPE_NOTHING;
 	else if (cell == '\n')
