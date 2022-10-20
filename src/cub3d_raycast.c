@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:49 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/19 17:44:02 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/20 10:34:57 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,12 @@ void	cub3d_raycast_side_def(t_data *data)
 
 void	cub3d_raycast_dda(t_data *data)
 {
+	data->ray.hit = 0;
 	while (data->ray.hit == 0)
 	{
 		if (data->ray.side_dist.x < data->ray.side_dist.y)
 		{
-			data->ray.side_dist.x += data->ray.delta.y;
+			data->ray.side_dist.x += data->ray.delta.x;
 			data->ray.map.x += data->ray.step.x;
 			data->ray.side = 0;
 		}

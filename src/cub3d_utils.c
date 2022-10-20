@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:20:05 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/19 18:10:13 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/20 10:44:57 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	cub3d_draw_line(t_data *data, int col, t_draw draw)
 	int	y;
 
 	y = draw.start;
-	while (y <= draw.end)
+	while (y >= draw.end)
 	{
 		cub3d_mlx_pixel_put(data, col, y, draw.hex_colour);
-		y += 1;
+		y -= 1;
 	}
 }
 
