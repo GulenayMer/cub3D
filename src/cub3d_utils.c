@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:20:05 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/21 13:25:54 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:40:32 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	cub3d_draw_line(t_data *data, int col, t_draw draw)
 	while (y < HEIGHT)
 	{
 		if (y < draw.start)
-			cub3d_mlx_pixel_put(data, col, y, 0xAAFFAA);
+			cub3d_mlx_pixel_put(data, col, y, BLUE1);
 		else if (y >= draw.start && y <= draw.end)
 		{
 			cub3d_get_texture(data);
 			cub3d_mlx_pixel_put(data, col, y, data->tex.colour);
 		}
 		else
-			cub3d_mlx_pixel_put(data, col, y, 0xAAAAFF);
+			cub3d_mlx_pixel_put(data, col, y, BROWN);
 		y += 1;
 	}
 }
