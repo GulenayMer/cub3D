@@ -67,6 +67,7 @@ ifeq ($(uname_S), Linux)
 				$(SRCDIR)cub3d_raycast.c		\
 				$(SRCDIR)cub3d_raycast_setup.c	\
 				$(SRCDIR)cub3d_utils.c			\
+				$(SRCDIR)cub3d_textures.c		\
 
 endif
 ifeq ($(uname_S), Darwin)
@@ -81,6 +82,7 @@ ifeq ($(uname_S), Darwin)
 				$(SRCDIR)cub3d_raycast_setup.c	\
 				$(SRCDIR)cub3d_error_check.c			\
 				$(SRCDIR)cub3d_utils.c			\
+				$(SRCDIR)cub3d_textures.c		\
 				
 endif
 

@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/20 11:41:29 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:18:29 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@ static void		cub3d_setup_init(t_data *new, int y, char *line);
 t_data	*cub3d_init(char *map)
 {
 	t_data	*data;
+	int		block;
 
+	block = TEX_SIZE;
 	data = cub3d_setup(map);
 	if (data == NULL)
 		return (NULL);
 	data->fps.cur_time = 0;
 	data->fps.old_time = 0;
+	// CONTROL NULL
 	cub3d_mlx_init(data);
+	cub3d_texture_init(data, block);
 	return (data);
 }
 

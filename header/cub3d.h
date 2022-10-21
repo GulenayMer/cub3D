@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/21 12:43:30 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:21:15 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_textures
 	t_tex_img		we;
 	t_tex_img		ea;
 	t_coord			coord;
-	int				wall_x;
+	double				wall_x;
 	double			step;
 	double			tex_pos;
 	int				tex_num;
@@ -182,6 +182,7 @@ long long	get_time(void);
 void		cub3d_draw_line(t_data *data, int col, t_draw draw);
 void		cub3d_check_fps(t_data *data);
 int			error_check_walls(t_data *data);
-void		cub3d_texture_init(t_data *data, int col);
-
+int			cub3d_texture_init(t_data *data, int block);
+void		cub3d_get_texture(t_data *data);
+void		cub3d_calculate_wallx(t_data *data);
 #endif
