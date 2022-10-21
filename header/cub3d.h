@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/20 15:58:01 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/21 12:43:30 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,20 @@
 # include <math.h>
 
 # if !defined (HEIGHT)
-#  define HEIGHT 720
+#  define HEIGHT	720
 # endif
 
 # if !defined (WIDTH)
-#  define WIDTH 1280
+#  define WIDTH		1280
 # endif
 
-# define LINE_LEN 26
-# define MOVE 10
+# define TEX_SIZE	64
 
-typedef struct s_textures
-{
-	char	*tex_no;
-	char	*tex_so;
-	char	*tex_we;
-	char	*tex_ea;
-}	t_textures;
+# define NORTH "./textures/North.xpm"
+# define SOUTH "./textures/South.xpm"
+# define EAST "./textures/East.xpm"
+# define WEST "./textures/West.xpm"
+
 
 typedef enum e_type
 {
@@ -58,6 +55,7 @@ typedef enum e_type
 	TYPE_W,
 	TYPE_NEWLINE,
 }	t_type;
+
 
 typedef struct s_cell
 {
@@ -94,6 +92,30 @@ typedef struct s_image
 	int			endian;
 }	t_image;
 
+typedef struct s_tex_img
+{
+	void		*img;
+	int			*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}	t_tex_img;
+
+typedef struct s_textures
+{
+	t_tex_img		no;
+	t_tex_img		so;
+	t_tex_img		we;
+	t_tex_img		ea;
+	t_coord			coord;
+	int				wall_x;
+	double			step;
+	double			tex_pos;
+	int				tex_num;
+	int				colour;
+}	t_textures;
+
+
 typedef struct s_ray
 {
 	t_pos		pos;
@@ -125,7 +147,7 @@ typedef struct s_draw
 typedef struct s_data
 {
 	t_matrix	*map;
-	t_textures	textures;
+	t_textures	tex;
 	t_pos		plane;
 	t_pos		old_plane;
 	t_pos		direction;
@@ -134,8 +156,8 @@ typedef struct s_data
 	t_ray		ray;
 	t_fps		fps;
 	t_draw		draw;
-	double		camera_x;
 	t_image		image;
+	double		camera_x;
 	void		*mlx;
 	void		*win;
 	int			xlen;
@@ -159,5 +181,7 @@ void		cub3d_init_plane(t_data *data, char cell);
 long long	get_time(void);
 void		cub3d_draw_line(t_data *data, int col, t_draw draw);
 void		cub3d_check_fps(t_data *data);
+int			error_check_walls(t_data *data);
+void		cub3d_texture_init(t_data *data, int col);
 
 #endif
