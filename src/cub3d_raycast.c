@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:49 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/21 11:17:29 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:19:15 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	cub3d_raycast(t_data *data)
 		cub3d_raycast_side_def(data);
 		cub3d_raycast_dda(data);
 		cub3d_raycast_draw_def(data);
+		cub3d_calculate_wallx(data);
 		cub3d_draw_line(data, x, data->draw);
-		cub3d_texture_init(data, x);
 		x += 1;
 	}
 	cub3d_check_fps(data);
