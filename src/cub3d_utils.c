@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:20:05 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/24 11:11:02 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/24 11:12:03 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	cub3d_draw_line(t_data *data, int col, t_draw draw)
 	while (y < HEIGHT)
 	{
 		if (y < draw.start)
-			cub3d_mlx_pixel_put(data, col, y, 0xAAFFAA);
+			cub3d_mlx_pixel_put(data, col, y, BLUE1);
 		else if (y >= draw.start && y <= draw.end)
 		{
 			cub3d_calculate_wallx(data);
@@ -43,7 +43,7 @@ void	cub3d_draw_line(t_data *data, int col, t_draw draw)
 			cub3d_mlx_pixel_put(data, col, y, data->tex.colour);
 		}
 		else
-			cub3d_mlx_pixel_put(data, col, y, 0xAAAAFF);
+			cub3d_mlx_pixel_put(data, col, y, BROWN);
 		y += 1;
 	}
 }

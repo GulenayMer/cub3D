@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:49 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/21 13:19:15 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:41:19 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,4 @@ void	cub3d_raycast_draw_def(t_data *data)
 	data->draw.end = data->draw.line_height / 2 + HEIGHT / 2;
 	if (data->draw.end >= HEIGHT)
 		data->draw.end = HEIGHT -1;
-	data->draw.hex_colour = RED3;
-	if (data->ray.side == 1)
-		data->draw.hex_colour = RED1;
 }
