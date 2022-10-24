@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:20:05 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/21 13:25:54 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/24 11:11:02 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	cub3d_draw_line(t_data *data, int col, t_draw draw)
 			cub3d_mlx_pixel_put(data, col, y, 0xAAFFAA);
 		else if (y >= draw.start && y <= draw.end)
 		{
+			cub3d_calculate_wallx(data);
 			cub3d_get_texture(data);
 			cub3d_mlx_pixel_put(data, col, y, data->tex.colour);
 		}
