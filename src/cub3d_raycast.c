@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_raycast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:49 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/21 13:41:19 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:10:44 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

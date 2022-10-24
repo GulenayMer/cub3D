@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/21 13:21:15 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/24 12:40:26 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,4 +185,5 @@ int			error_check_walls(t_data *data);
 int			cub3d_texture_init(t_data *data, int block);
 void		cub3d_get_texture(t_data *data);
 void		cub3d_calculate_wallx(t_data *data);
+
 #endif

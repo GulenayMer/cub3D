@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 13:03:25 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/21 13:21:02 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:38:29 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ void	cub3d_calculate_wallx(t_data *data)
 		data->tex.wall_x = data->player.x
 			+ data->ray.wall_dist * data->ray.pos.x;
 	data->tex.wall_x -= floor(data->tex.wall_x);
-	data->tex.coord.x = (data->tex.wall_x * (2 * TEX_SIZE));
+	data->tex.coord.x = (int)(data->tex.wall_x * (double) TEX_SIZE);
 	if (data->ray.side == 0 && data->ray.pos.x > 0)
 		data->tex.coord.x = TEX_SIZE - data->tex.coord.x - 1;
 	if (data->ray.side == 1 && data->ray.pos.y < 0)
 		data->tex.coord.x = TEX_SIZE - data->tex.coord.x - 1;
+	data->tex.step = 1.0 * TEX_SIZE / data->draw.line_height;
+	data->tex.tex_pos = (data->draw.start - HEIGHT
+			/ 2 + data->draw.line_height / 2) * data->tex.step;
 }
 
 void	cub3d_get_texture(t_data *data)
 {
-	data->tex.step = 1.0 * TEX_SIZE * data->draw.line_height;
-	data->tex.tex_pos = (data->draw.start - HEIGHT
-			/ 2 + data->draw.line_height / 2) * data->tex.step;
 	data->tex.coord.y = (int)data->tex.tex_pos & (TEX_SIZE - 1);
 	data->tex.tex_pos += data->tex.step;
 	if (data->ray.side == 1)
