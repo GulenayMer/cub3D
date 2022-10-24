@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 13:03:25 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/24 15:38:29 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:44:41 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	cub3d_get_texture(t_data *data)
 	else
 	{
 		if (data->ray.pos.x < 0)
-			data->tex.colour = data->tex.we.addr
+			data->tex.colour = data->tex.ea.addr
 			[TEX_SIZE * data->tex.coord.y + data->tex.coord.x];
 		else
-			data->tex.colour = data->tex.ea.addr
+			data->tex.colour = data->tex.we.addr
 			[TEX_SIZE * data->tex.coord.y + data->tex.coord.x];
 	}
 }
