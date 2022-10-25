@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/25 12:23:06 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/25 14:33:04 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,26 @@ static	void	cub3d_setup_init(t_data *new, int y, char *line)
 		return ;
 	}
 	cub3d_fill_map(new, line, new->map, y);
+}
+
+int	cub3d_convert_rgb(t_colour rgb)
+{
+	char	*temp1;
+	char	*temp2;
+	char	*temp3;
+	char	*rgb;
+	int		ret;
+
+	temp1 = ft_convert2hexa(rgb.r);
+	temp2 = ft_convert2hexa(rgb.g);
+	temp3 = ft_convert2hexa(rgb.b);
+	rgb = ft_strjoin(temp1, temp2);
+	free(temp1);
+	temp1 = ft_strjoin(rgb, temp3);
+	ret = ft_convertfromhexa(re);
+	free(temp1);
+	free(temp2);
+	free(temp3);
+	free(rgb);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/25 12:22:36 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/25 14:31:50 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ typedef struct s_colour
 	int			red;
 	int			green;
 	int			blue;
-	int			t;
 }	t_colour;
 
 typedef struct s_draw
@@ -141,8 +140,10 @@ typedef struct s_draw
 	int			line_height;
 	int			start;
 	int			end;
-	t_colour	*colour;
-	int			hex_colour;
+	t_colour	ceiling;
+	t_colour	floor;
+	int			ceiling_colour;
+	int			floor_colour;
 }	t_draw;
 
 typedef struct s_data
@@ -191,6 +192,7 @@ void		cub3d_calculate_wallx(t_data *data);
 void		cub3d_rotate_left(t_data *data, double rotate_speed);
 void		cub3d_rotate_right(t_data *data, double rotate_speed);
 int			cub3d_mlx_mouse(int x, int y, t_data *data);
+int			cub3d_convert_rgb(t_colour rgb);
 
 
 #endif

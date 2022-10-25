@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:05:37 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/25 12:30:15 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/25 12:37:09 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ int	cub3d_mlx_mouse(int x, int y, t_data *data)
 	{
 		mlx_mouse_move(data->mlx, data->win, data->mouse.x,
 			data->mouse.y);
-		cub3d_rotate_left(data, data->fps.rotate_speed / 2);
+		cub3d_rotate_left(data, data->fps.rotate_speed / 3);
 		data->ctr_x = x;
 	}
 	if (x > data->ctr_x)
 	{
 		mlx_mouse_move(data->mlx, data->win, data->mouse.x,
 			data->mouse.y);
-		cub3d_rotate_right(data, data->fps.rotate_speed / 2);
+		cub3d_rotate_right(data, data->fps.rotate_speed / 3);
 		data->ctr_x = x;
 	}
 	return (EXIT_SUCCESS);
