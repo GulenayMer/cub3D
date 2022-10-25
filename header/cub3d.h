@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/24 12:40:26 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/25 12:22:36 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_textures
 	t_tex_img		we;
 	t_tex_img		ea;
 	t_coord			coord;
-	double				wall_x;
+	double			wall_x;
 	double			step;
 	double			tex_pos;
 	int				tex_num;
@@ -133,6 +133,7 @@ typedef struct s_colour
 	int			red;
 	int			green;
 	int			blue;
+	int			t;
 }	t_colour;
 
 typedef struct s_draw
@@ -157,6 +158,8 @@ typedef struct s_data
 	t_fps		fps;
 	t_draw		draw;
 	t_image		image;
+	t_coord		mouse;
+	int			ctr_x;
 	double		camera_x;
 	void		*mlx;
 	void		*win;
@@ -185,5 +188,9 @@ int			error_check_walls(t_data *data);
 int			cub3d_texture_init(t_data *data, int block);
 void		cub3d_get_texture(t_data *data);
 void		cub3d_calculate_wallx(t_data *data);
+void		cub3d_rotate_left(t_data *data, double rotate_speed);
+void		cub3d_rotate_right(t_data *data, double rotate_speed);
+int			cub3d_mlx_mouse(int x, int y, t_data *data);
+
 
 #endif

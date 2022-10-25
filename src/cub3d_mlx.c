@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:05:37 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/21 12:10:11 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:30:15 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,24 @@ void	cub3d_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->image.addr + (y * data->image.line_length
 			+ x * (data->image.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+int	cub3d_mlx_mouse(int x, int y, t_data *data)
+{
+	(void)y;
+	if (x < data->ctr_x)
+	{
+		mlx_mouse_move(data->mlx, data->win, data->mouse.x,
+			data->mouse.y);
+		cub3d_rotate_left(data, data->fps.rotate_speed / 2);
+		data->ctr_x = x;
+	}
+	if (x > data->ctr_x)
+	{
+		mlx_mouse_move(data->mlx, data->win, data->mouse.x,
+			data->mouse.y);
+		cub3d_rotate_right(data, data->fps.rotate_speed / 2);
+		data->ctr_x = x;
+	}
+	return (EXIT_SUCCESS);
 }
