@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:30:51 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/20 15:08:42 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:30:17 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	cub3d_draw_image(void *input)
 	data = (t_data *)input;
 	ft_bzero(data->image.addr, (WIDTH * HEIGHT) * sizeof(int));
 	cub3d_raycast(data);
+	cub3d_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->image.img, 0, 0);
 	return (EXIT_SUCCESS);
 }

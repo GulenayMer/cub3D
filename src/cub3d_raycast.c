@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:49 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/24 15:10:44 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/25 16:16:07 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	cub3d_raycast_side_def(t_data *data);
 static void	cub3d_raycast_dda(t_data *data);
 static void	cub3d_raycast_draw_def(t_data *data);
 
-int	cub3d_raycast(t_data *data)
+void	cub3d_raycast(t_data *data)
 {
 	int		x;
 
@@ -33,7 +33,6 @@ int	cub3d_raycast(t_data *data)
 		x += 1;
 	}
 	cub3d_check_fps(data);
-	return (EXIT_SUCCESS);
 }
 
 void	cub3d_raycast_pos_def(t_data *data, int x)

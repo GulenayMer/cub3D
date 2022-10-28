@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/25 14:33:04 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/26 15:19:49 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_data	*cub3d_setup(char *map)
 		return (cub3d_error_clean(new, line, fd));
 	while (line != NULL)
 	{
-		y++;
+		y += 1;
 		free(line);
 		line = get_next_line(fd, 0);
 		cub3d_fill_map(new, line, new->map, y);
@@ -77,7 +77,8 @@ static void	*cub3d_error_clean(t_data *new, char *line, int fd)
 static	void	cub3d_setup_init(t_data *new, int y, char *line)
 {
 	new->error_check = 0;
-	new->xlen = ft_strlen(line);
+	// will have to be the first line of map
+	new->xlen = ft_strlen(line) + 1;
 	new->map = matrix_init(new->xlen, 1, sizeof(t_cell));
 	if (new->map == NULL)
 	{
@@ -92,19 +93,19 @@ int	cub3d_convert_rgb(t_colour rgb)
 	char	*temp1;
 	char	*temp2;
 	char	*temp3;
-	char	*rgb;
+	char	*temp4;
 	int		ret;
 
-	temp1 = ft_convert2hexa(rgb.r);
-	temp2 = ft_convert2hexa(rgb.g);
-	temp3 = ft_convert2hexa(rgb.b);
-	rgb = ft_strjoin(temp1, temp2);
+	temp1 = ft_convert2hexa(rgb.red);
+	temp2 = ft_convert2hexa(rgb.green);
+	temp3 = ft_convert2hexa(rgb.blue);
+	temp4 = ft_strjoin(temp1, temp2);
 	free(temp1);
-	temp1 = ft_strjoin(rgb, temp3);
-	ret = ft_convertfromhexa(re);
+	temp1 = ft_strjoin(temp4, temp3);
+	ret = ft_convertfromhexa(temp1);
 	free(temp1);
 	free(temp2);
 	free(temp3);
-	free(rgb);
+	free(temp4);
 	return (ret);
 }

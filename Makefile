@@ -68,21 +68,23 @@ ifeq ($(uname_S), Linux)
 				$(SRCDIR)cub3d_raycast_setup.c	\
 				$(SRCDIR)cub3d_utils.c			\
 				$(SRCDIR)cub3d_textures.c		\
+				$(SRCDIR)cub3d_minimap.c		\
 
 endif
 ifeq ($(uname_S), Darwin)
-	SRCS =		$(SRCDIR)cub3d.c			\
-				$(SRCDIR)cub3d_def.c		\
-				$(SRCDIR)cub3d_mlx.c		\
-				$(SRCDIR)cub3d_mac.c		\
-				$(SRCDIR)cub3d_set.c		\
-				$(SRCDIR)cub3d_keys.c		\
-				$(SRCDIR)cub3d_pop_map.c	\
-				$(SRCDIR)cub3d_raycast.c	\
+	SRCS =		$(SRCDIR)cub3d.c				\
+				$(SRCDIR)cub3d_def.c			\
+				$(SRCDIR)cub3d_mlx.c			\
+				$(SRCDIR)cub3d_mac.c			\
+				$(SRCDIR)cub3d_set.c			\
+				$(SRCDIR)cub3d_keys.c			\
+				$(SRCDIR)cub3d_pop_map.c		\
+				$(SRCDIR)cub3d_raycast.c		\
 				$(SRCDIR)cub3d_raycast_setup.c	\
-				$(SRCDIR)cub3d_error_check.c			\
+				$(SRCDIR)cub3d_error_check.c	\
 				$(SRCDIR)cub3d_utils.c			\
 				$(SRCDIR)cub3d_textures.c		\
+				$(SRCDIR)cub3d_minimap.c		\
 				
 endif
 

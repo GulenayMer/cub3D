@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/25 14:31:50 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/28 15:17:00 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@
 #  define WIDTH		1280
 # endif
 
-# define TEX_SIZE	64
+# define TEX_SIZE	256
 
-# define NORTH "./textures/North.xpm"
-# define SOUTH "./textures/South.xpm"
-# define EAST "./textures/East.xpm"
-# define WEST "./textures/West.xpm"
-
+# define NORTH "./textures/NorthXL.xpm"
+# define SOUTH "./textures/SouthXL.xpm"
+# define EAST "./textures/EastXL.xpm"
+# define WEST "./textures/WestXL.xpm"
+# define X_OFFSET WIDTH - 30
+# define Y_OFFSET 30
 
 typedef enum e_type
 {
-	INVALID = -2,
+	INVALID = -3,
+	TYPE_END = -2,
 	TYPE_NOTHING = -1,
 	TYPE_FLOOR = 0,
 	TYPE_WALL,
@@ -146,10 +148,21 @@ typedef struct s_draw
 	int			floor_colour;
 }	t_draw;
 
+typedef struct s_minimap
+{
+	t_coord		size;
+	t_coord		unit;
+	t_coord		map;
+	t_coord		iter;
+	t_coord		p_size;
+	t_pos		player;
+}	t_minimap;
+
 typedef struct s_data
 {
 	t_matrix	*map;
 	t_textures	tex;
+	t_minimap	minimap;
 	t_pos		plane;
 	t_pos		old_plane;
 	t_pos		direction;
@@ -176,13 +189,13 @@ void		cub3d_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			cub3d_draw_image(void *input);
 int			cub3d_key_press(int key, t_data *data);
 int			cub3d_close_win(t_data *data);
-int			cub3d_raycast(t_data *data);
+void		cub3d_raycast(t_data *data);
 int			cub3d_check_square(t_data *data, int x, int y);
 void		cub3d_find_player(t_data *data);
 void		cub3d_direction_set(t_data *data, char cell);
 void		cub3d_init_dir_plane(t_data *data, t_coord coord, char cell);
 void		cub3d_init_plane(t_data *data, char cell);
-long long	get_time(void);
+long long	cub3d_get_time(void);
 void		cub3d_draw_line(t_data *data, int col, t_draw draw);
 void		cub3d_check_fps(t_data *data);
 int			error_check_walls(t_data *data);
@@ -193,6 +206,7 @@ void		cub3d_rotate_left(t_data *data, double rotate_speed);
 void		cub3d_rotate_right(t_data *data, double rotate_speed);
 int			cub3d_mlx_mouse(int x, int y, t_data *data);
 int			cub3d_convert_rgb(t_colour rgb);
+void		cub3d_minimap(t_data *data);
 
 
 #endif

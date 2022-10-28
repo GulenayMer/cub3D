@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colours.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:57:06 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/21 13:40:25 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/26 10:00:16 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@
 # define YELLOW	0xFFFF00
 # define BLUE	0x0000FF
 # define BLUE1	0xDDDDFF
+# define BLACK  0x000000
+# define WHITE	0xFFFFFF
 
 #endif

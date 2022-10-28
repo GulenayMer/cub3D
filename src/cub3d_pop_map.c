@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_pop_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:19:11 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/20 15:37:18 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:17:17 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,17 @@ int	cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y)
 	coord.y = y;
 	if (line == NULL)
 		return (EXIT_FAILURE);
-	while (line[coord.x] != '\n' && line[coord.x] != '\0')
+		// mod no new line
+	while (line[coord.x] != '\0')
 	{
 		cub3d_new_cell(data, line[coord.x], matrix, coord);
 		if (data->error_check == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 		coord.x += 1;
 	}
+	cub3d_new_cell(data, line[coord.x], matrix, coord);
+	if (data->error_check == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -66,6 +70,8 @@ static void	cub3d_new_cell_type(t_data *data, t_cell *new, char cell,
 		new->type = TYPE_NOTHING;
 	else if (cell == '\n')
 		new->type = TYPE_NEWLINE;
+	else if (cell == '\0')
+		new->type = TYPE_END;
 	else
 		new->type = INVALID;
 	if (new->type == INVALID)

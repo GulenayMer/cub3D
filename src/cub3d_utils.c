@@ -6,13 +6,13 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:20:05 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/25 11:48:07 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/26 15:03:22 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-long long	get_time(void)
+long long	cub3d_get_time(void)
 {
 	struct timeval	time;
 	long long		t_ms;
@@ -66,7 +66,7 @@ int	cub3d_check_square(t_data *data, int x, int y)
 void	cub3d_check_fps(t_data *data)
 {
 	data->fps.old_time = data->fps.cur_time;
-	data->fps.cur_time = get_time();
+	data->fps.cur_time = cub3d_get_time();
 	data->fps.frame_time = (data->fps.cur_time - data->fps.old_time) / 1000.0;
 	//printf("FPS: %f\n", 1.0 / data->fps.frame_time);
 	data->fps.move_speed = data->fps.frame_time * 5.0;
