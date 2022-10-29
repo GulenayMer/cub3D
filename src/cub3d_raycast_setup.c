@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:18:48 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/25 17:31:37 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/28 16:46:00 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,26 +80,26 @@ void	cub3d_init_plane(t_data *data, char cell)
 {
 	if (cell == 'N')
 	{
-		data->plane.x = -0.66;
+		data->plane.x = 1;
 		data->plane.y = 0;
 		return ;
 	}
 	if (cell == 'S')
 	{
-		data->plane.x = 0.66;
+		data->plane.x = -1;
 		data->plane.y = 0;
 		return ;
 	}
 	if (cell == 'E')
 	{
 		data->plane.x = 0;
-		data->plane.y = -0.66;
+		data->plane.y = 1;
 		return ;
 	}
 	if (cell == 'W')
 	{
 		data->plane.x = 0;
-		data->plane.y = 0.66;
+		data->plane.y = -1;
 		return ;
 	}
 }

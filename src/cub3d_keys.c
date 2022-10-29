@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:41:47 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/25 11:22:37 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/28 16:53:12 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	cub3d_move_fb(int key, t_data *data)
 
 static void	cub3d_move_ss(int key, t_data *data)
 {
-	if (key == A_KEY)
+	if (key == D_KEY)
 	{
 		if (cub3d_check_square(data,
 				(int)(data->player.x + (-data->direction.y
@@ -74,7 +74,7 @@ static void	cub3d_move_ss(int key, t_data *data)
 			* data->fps.move_speed)) == TYPE_FLOOR)
 			data->player.y += data->direction.x * data->fps.move_speed;
 	}
-	if (key == D_KEY)
+	if (key == A_KEY)
 	{
 		if (cub3d_check_square(data,
 				(int)(data->player.x - (-data->direction.y
@@ -88,7 +88,7 @@ static void	cub3d_move_ss(int key, t_data *data)
 	}
 }
 
-void	cub3d_rotate_right(t_data *data, double rotate_speed)
+void	cub3d_rotate_left(t_data *data, double rotate_speed)
 {
 	data->old_dir.x = data->direction.x;
 	data->direction.x = data->direction.x * cos(-rotate_speed)
@@ -102,7 +102,7 @@ void	cub3d_rotate_right(t_data *data, double rotate_speed)
 		+ data->plane.y * cos(-rotate_speed);
 }
 
-void	cub3d_rotate_left(t_data *data, double rotate_speed)
+void	cub3d_rotate_right(t_data *data, double rotate_speed)
 {
 	data->old_dir.x = data->direction.x;
 	data->direction.x = data->direction.x * cos(rotate_speed)

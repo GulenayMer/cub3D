@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/28 15:17:00 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/29 12:36:37 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ typedef struct s_minimap
 	t_coord		map;
 	t_coord		iter;
 	t_coord		p_size;
-	t_pos		player;
+	t_coord		p_unit;
 }	t_minimap;
 
 typedef struct s_data
