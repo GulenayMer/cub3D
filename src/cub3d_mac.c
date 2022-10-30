@@ -6,17 +6,25 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:56:25 by jrocha            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/12 21:06:43 by mgulenay         ###   ########.fr       */
+=======
+/*   Updated: 2022/10/24 15:51:19 by jrocha           ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-int	fdf_destroyer(t_data *data, int exit_status)
+int	cub3d_destroyer(t_data *data, int exit_status)
 {
 	if (exit_status == EXIT_SUCCESS)
 	{
-		mlx_destroy_image(data->mlx, data->img);
+		mlx_destroy_image(data->mlx, data->image.img);
+		mlx_destroy_image(data->mlx, data->tex.no.img);
+		mlx_destroy_image(data->mlx, data->tex.so.img);
+		mlx_destroy_image(data->mlx, data->tex.ea.img);
+		mlx_destroy_image(data->mlx, data->tex.we.img);
 		mlx_destroy_window(data->mlx, data->win);
 		if (data->mlx != NULL)
 			free(data->mlx);

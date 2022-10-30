@@ -6,36 +6,41 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:19:11 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/10 17:17:14 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/26 15:17:17 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
 static void		*cub3d_new_cell(t_data *data, char line, t_matrix *matrix,
-					t_int_xy coord);
-static void		cub3d_new_cell_type(t_data *data, t_cell *new, char cell);
+					t_coord coord);
+static void		cub3d_new_cell_type(t_data *data, t_cell *new, char cell,
+					t_coord coord);
 
 int	cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y)
 {
-	t_int_xy	coord;
+	t_coord	coord;
 
 	coord.x = 0;
 	coord.y = y;
 	if (line == NULL)
 		return (EXIT_FAILURE);
-	while (line[coord.x] != '\n' && line[coord.x] != '\0')
+		// mod no new line
+	while (line[coord.x] != '\0')
 	{
 		cub3d_new_cell(data, line[coord.x], matrix, coord);
 		if (data->error_check == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 		coord.x += 1;
 	}
+	cub3d_new_cell(data, line[coord.x], matrix, coord);
+	if (data->error_check == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
 static	void	*cub3d_new_cell(t_data *data, char cell, t_matrix *matrix,
-						t_int_xy coord)
+						t_coord coord)
 {
 	t_cell	*new;
 
@@ -45,28 +50,28 @@ static	void	*cub3d_new_cell(t_data *data, char cell, t_matrix *matrix,
 			return (NULL);
 	}
 	new = matrix_get(matrix, coord.x, coord.y);
-	cub3d_new_cell_type(data, new, cell);
+	cub3d_new_cell_type(data, new, cell, coord);
 	return (EXIT_SUCCESS);
 }
 
-static void	cub3d_new_cell_type(t_data *data, t_cell *new, char cell)
+static void	cub3d_new_cell_type(t_data *data, t_cell *new, char cell,
+		t_coord coord)
 {
 	if (cell == '1')
 		new->type = TYPE_WALL;
 	else if (cell == '0')
 		new->type = TYPE_FLOOR;
-	else if (cell == 'N')
-		new->type = TYPE_N;
-	else if (cell == 'S')
-		new->type = TYPE_S;
-	else if (cell == 'E')
-		new->type = TYPE_E;
-	else if (cell == 'W')
-		new->type = TYPE_W;
+	else if (cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W')
+	{
+		cub3d_init_dir_plane(data, coord, cell);
+		new->type = TYPE_FLOOR;
+	}		
 	else if (cell == ' ' || cell == '\t')
 		new->type = TYPE_NOTHING;
 	else if (cell == '\n')
 		new->type = TYPE_NEWLINE;
+	else if (cell == '\0')
+		new->type = TYPE_END;
 	else
 		new->type = INVALID;
 	if (new->type == INVALID)

@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_set.c                                        :+:      :+:    :+:   */
+/*   colours.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 09:30:51 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/25 15:30:17 by jrocha           ###   ########.fr       */
+/*   Created: 2022/10/19 13:57:06 by mgulenay          #+#    #+#             */
+/*   Updated: 2022/10/26 10:00:16 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3d.h"
+#ifndef COLOURS_H
+# define COLOURS_H
 
-int	cub3d_draw_image(void *input)
-{
-	t_data	*data;
+# include "cub3d.h"
 
-	data = (t_data *)input;
-	ft_bzero(data->image.addr, (WIDTH * HEIGHT) * sizeof(int));
-	cub3d_raycast(data);
-	cub3d_minimap(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->image.img, 0, 0);
-	return (EXIT_SUCCESS);
-}
+# define RED	0xFF0000
+# define BROWN	0x4B371C
+# define RED2	0xFF8888
+# define RED3	0xFFAAAA
+# define RED4	0xFFCCCC
+# define RED5	0xFFDDDD
+# define YELLOW	0xFFFF00
+# define BLUE	0x0000FF
+# define BLUE1	0xDDDDFF
+# define BLACK  0x000000
+# define WHITE	0xFFFFFF
+
+#endif
