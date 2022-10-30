@@ -6,13 +6,13 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/30 12:47:45 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/30 20:55:24 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-static t_data	*cub3d_setup(char *map, t_data *data);
+static t_data	*cub3d_setup(char *map);
 static void		*cub3d_error_clean(t_data *new, char *line, int fd);
 static void		cub3d_setup_init(t_data *new, int y, char *line);
 
@@ -36,7 +36,7 @@ t_data	*cub3d_init(char *map)
 	return (data);
 }
 
-static t_data	*cub3d_setup(char *map, t_data *data)
+static t_data	*cub3d_setup(char *map)
 {
 	t_data	*new;
 	char	*line;
@@ -60,7 +60,8 @@ static t_data	*cub3d_setup(char *map, t_data *data)
 			&& ft_strncmp(line, "WE", 3) && ft_strncmp(line, "F", 2) \
 			&& ft_strncmp(line, "C", 2))
 		{
-			data->check_row += 1;
+			y += 1;
+			printf("%i\n", y);
 		}
 		y += 1;
 		free(line);

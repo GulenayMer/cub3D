@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_error_check.c                                :+:      :+:    :+:   */
+/*   cub3d_map_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 22:07:12 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/30 12:46:09 by mgulenay         ###   ########.fr       */
+/*   Created: 2022/10/30 20:12:05 by mgulenay          #+#    #+#             */
+/*   Updated: 2022/10/30 20:58:02 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../header/cub3d.h"
 
-/* count rows included SO, WE, NO, EA, F, C */
-
-int count_map_rows(t_data *data)
+int	check_map(t_data *data)
 {
-	char	*line;
-	int		line_count;
+	int	x;
+	int	y;
 
-	line = get_next_line(data->mapfd);
-	line_count = 0;
-	while (line != NULL)
+	y = 0;
+	while (y < data->map->count_y)
 	{
-	
-		line_count++;
-		free(line);
-		line = get_next_line(mapfd);
-
+		x = 0;
+		while (x < data->xlen)
+		{
+			if (check_walls(data, x, y))
+				return (EXIT_FAILURE);
+			if (check_spaces(data, x, y))
+				return (EXIT_FAILURE);
+			x += 1;
+		}
+		y += 1;
 	}
-	close(mapfd);
-	return (line_count);
-
+	return (EXIT_SUCCESS);
 }

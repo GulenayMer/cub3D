@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/30 12:46:53 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/30 20:50:00 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,9 +209,8 @@ void		cub3d_rotate_right(t_data *data, double rotate_speed);
 int			cub3d_mlx_mouse(int x, int y, t_data *data);
 int			cub3d_convert_rgb(t_colour rgb);
 void		cub3d_minimap(t_data *data);
-
-
-/* check walls */
-int	check_first_line(t_cell *cell, t_data *data, int x, int y);
+int			check_map(t_data *data);
+int			check_walls(t_data *data, int x, int y);
+int			check_spaces(t_data *data, int x, int y);
 
 #endif
