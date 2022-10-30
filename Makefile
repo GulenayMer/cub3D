@@ -57,40 +57,6 @@ INCLUDES = 		$(FT_INC) $(MLX_INC)
 ################################## SRCS & OBJS #################################
 ################################################################################
 ifeq ($(uname_S), Linux)
-<<<<<<< HEAD
-
-	SRCS =		$(SRCDIR)cub3d.c		\
-				$(SRCDIR)cub3d_def.c	\
-				$(SRCDIR)cub3d_linux.c	\
-				$(SRCDIR)wall_check.c	\
-				
-
-endif
-ifeq ($(uname_S), Darwin)
-	SRCS =		$(SRCDIR)cub3d.c		\
-				$(SRCDIR)cub3d_def.c	\
-				$(SRCDIR)cub3d_mac.c	\
-
-	SRCS =		$(SRCDIR)cub3d.c			\
-				$(SRCDIR)cub3d_def.c		\
-				$(SRCDIR)cub3d_mlx.c		\
-				$(SRCDIR)cub3d_linux.c		\
-				$(SRCDIR)cub3d_set.c		\
-				$(SRCDIR)cub3d_keys.c		\
-				$(SRCDIR)cub3d_pop_map.c	\
-
-endif
-ifeq ($(uname_S), Darwin)
-	SRCS =		$(SRCDIR)cub3d.c			\
-				$(SRCDIR)cub3d_def.c		\
-				$(SRCDIR)cub3d_mlx.c		\
-				$(SRCDIR)cub3d_mac.c		\
-				$(SRCDIR)cub3d_set.c		\
-				$(SRCDIR)cub3d_keys.c		\
-				$(SRCDIR)cub3d_pop_map.c	\
-
-
-=======
 	SRCS =		$(SRCDIR)cub3d.c				\
 				$(SRCDIR)cub3d_def.c			\
 				$(SRCDIR)cub3d_mlx.c			\
@@ -119,7 +85,6 @@ ifeq ($(uname_S), Darwin)
 				$(SRCDIR)cub3d_utils.c			\
 				$(SRCDIR)cub3d_textures.c		\
 				$(SRCDIR)cub3d_minimap.c		\
->>>>>>> main
 				
 endif
 
