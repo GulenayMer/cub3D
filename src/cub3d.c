@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:00:45 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/30 12:27:37 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/30 12:32:13 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	int		error_check;
 	t_data	*data;
 
-	error_check = cub3d_error_mgmt(argc, argv);
+	error_check = cub3d_error_mgmt(argc, argv, data);
 	if (error_check == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	data = cub3d_init(argv[1]);
@@ -37,23 +37,23 @@ int	main(int argc, char **argv)
 	return (cub3d_destroyer(data, EXIT_SUCCESS));
 }
 
-static int	cub3d_error_mgmt(int argc, char **argv)
+static int	cub3d_error_mgmt(int argc, char **argv, t_data *data)
 {
 	int		len;
-	int		fd;
+	//int		fd;
 	char	*file;
 
 	if (cub3d_argc_ctrl(argc) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	file = argv[1];
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
+	data->fd = open(file, O_RDONLY);
+	if (data->fd < 0)
 	{
 		ft_printf(STDERR_FILENO, NO_ACCESS, argv[1]);
-		close(fd);
+		close(data->fd);
 		return (EXIT_FAILURE);
 	}
-	close(fd);
+	close(data->fd);
 	len = ft_strlen(file);
 	if (ft_strncmp(&file[len - 4], ".cub", 4) != 0)
 	{

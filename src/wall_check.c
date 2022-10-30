@@ -6,38 +6,79 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:25:04 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/06 11:01:50 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/10/30 13:32:37 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-/* check if the first line is filled with 1s or spaces */
-int	check_first_line(t_cell *cell, t_data *data, int x, int y)
+int	check_characters(t_data *data, char **map, int x, int y)
 {
-	while (x < data->xlen && y == 0)
-	{
-		if (cell->line[x] != '1')
-			return (1);
-		x++;
-	}
+	if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != ' ' \
+		&& map[y][x] != 'N' && map[y][x] != 'S' && map[y][x] != 'E' \
+		&& map[y][x] != 'W')
+		return (1);
 	return (0);
 }
 
-/* check if the last line is filled with 1s */
-/* int	check_last_line(t_solong *game)
+int	check_edge_walls(t_data *data, char *map, int x, int y)
 {
-	int	i;
-	int	j;
+	if ((y == 0 || y == data->check_row - 1) \
+		&& map[y][x] != '1' && map[y][x] != ' ')
+		return (1);
+	else if ((x == 0 || x == data->check_columns - 1) \
+		&& map[y][x] != '1' && map[y][x] != ' ')
+		return (1);
+	return (0);
+}
 
-	j = game->map_height - 1;
-	i = 0;
-	while (i < game->map_width)
+int	check_spaces(t_data *data, char *map, int x, int y)
+{
+	if (map[y][x + 1] != ' ' || map[y][x - 1] != ' ' \
+		|| map[y - 1] == ' ' || map[y + 1][x] == ' ')
+		return (1);
+	return (0);
+}
+
+int	check_inside(t_data *data, char *line, int x, int y)
+{
+	if (line[0] == '0' && y != 0 && y != data->check_rows - 1
+		x != 0 && x != ft_strlen(s) - 1)
+		return (1);
+	return (0);
+}
+
+int	check_inside2(t_data *data, char **map, int x, int y)
+{
+	if (map[y][x + 1] == ' ' || map[y][x - 1] == ' ' \
+		|| map[y + 1][x] == ' ' || map[y - 1][x] == ' ')
+		return (1);
+	return (0);
+}
+
+int	check_map(t_data *data)
+{
+	int		x;
+	int		y;
+	char	**map;
+
+	y = 0;
+	while (map[y])
 	{
-		if (game->map[j][i] != '1')
-			return (error_message(3));
-		i++;
+		x = 0;
+		while (map[y][x])
+		{
+			if (check_characters(data, map, x, y) \
+				|| check_edge_walls(data, map, x, y))
+				return (1);
+			else if (check_inside(data, &map[y][x], x, y))
+			{
+				if (check_inside2(data, map[y][x], x, y))
+					return (1);
+			}
+			x += 1;
+		}
+		y += 1;
 	}
 	return (0);
 }
- */
