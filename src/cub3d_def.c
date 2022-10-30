@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/26 15:19:49 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/30 20:55:24 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static t_data	*cub3d_setup(char *map)
 	if (new == NULL)
 		return (NULL);
 	y = 0;
+	new->error_check = 0;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd, 0);
 	cub3d_setup_init(new, y, line);
@@ -54,6 +55,14 @@ static t_data	*cub3d_setup(char *map)
 		return (cub3d_error_clean(new, line, fd));
 	while (line != NULL)
 	{
+		if (ft_strlen(line) > 2 && ft_strncmp(line, "NO", 3) \
+			&& ft_strncmp(line, "SO", 3) && ft_strncmp(line, "EA", 3) \
+			&& ft_strncmp(line, "WE", 3) && ft_strncmp(line, "F", 2) \
+			&& ft_strncmp(line, "C", 2))
+		{
+			y += 1;
+			printf("%i\n", y);
+		}
 		y += 1;
 		free(line);
 		line = get_next_line(fd, 0);
