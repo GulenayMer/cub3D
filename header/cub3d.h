@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/29 12:36:37 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/29 13:21:27 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_tex_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	char		*path;
 }	t_tex_img;
 
 typedef struct s_textures

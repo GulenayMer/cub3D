@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:19:11 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/26 15:17:17 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/29 13:23:32 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y)
 	coord.y = y;
 	if (line == NULL)
 		return (EXIT_FAILURE);
-		// mod no new line
 	while (line[coord.x] != '\0')
 	{
 		cub3d_new_cell(data, line[coord.x], matrix, coord);

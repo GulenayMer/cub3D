@@ -1,3 +1,11 @@
+NO ./textures/NorthXL.xpm
+SO ./textures/SouthXL.xpm
+WE ./textures/WestXL.xpm
+EA ./textures/EastXL.xpm
+
+F 220,100,0
+C 225,30,0
+
 1111111111111111111111
 1100000000000000000011
 1000000000000000000001
