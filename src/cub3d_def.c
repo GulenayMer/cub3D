@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 17:35:30 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:43:48 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	cub3d_convert_rgb(t_colour rgb)
 	temp2 = ft_convert2hexa(rgb.green);
 	temp3 = ft_convert2hexa(rgb.blue);
 	temp4 = ft_strjoin(temp1, temp2);
+	free(temp1);
 	temp1 = ft_strjoin(temp4, temp3);
 	ret = ft_convertfromhexa(temp1);
 	free(temp1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_pop_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:19:11 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/29 13:23:32 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/02 17:50:31 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y)
 			return (EXIT_FAILURE);
 		coord.x += 1;
 	}
-	cub3d_new_cell(data, line[coord.x], matrix, coord);
+	//cub3d_new_cell(data, line[coord.x], matrix, coord);
 	if (data->error_check == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

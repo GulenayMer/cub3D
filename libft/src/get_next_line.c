@@ -6,13 +6,14 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:57:34 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 17:37:34 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:40:42 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "../header/libft.h"
+
 char	*ft_strjoin_gnl(char *chars_saved, char *temp)
 {
 	size_t	len;
