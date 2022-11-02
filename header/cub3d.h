@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/29 13:21:27 by jrocha           ###   ########.fr       */
+=======
+/*   Updated: 2022/10/30 20:50:00 by mgulenay         ###   ########.fr       */
+>>>>>>> 285499c5634f91c1efab94d81c629d59fff8be0b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +28,7 @@
 # include <stdio.h>
 # include <sys/time.h>
 # include <math.h>
+#include <stdio.h>
 
 # if !defined (HEIGHT)
 #  define HEIGHT	720
@@ -180,6 +185,7 @@ typedef struct s_data
 	void		*win;
 	int			xlen;
 	int			error_check;
+	int			check_row;
 }	t_data;
 
 t_data		*cub3d_init(char *map);
@@ -208,6 +214,8 @@ void		cub3d_rotate_right(t_data *data, double rotate_speed);
 int			cub3d_mlx_mouse(int x, int y, t_data *data);
 int			cub3d_convert_rgb(t_colour rgb);
 void		cub3d_minimap(t_data *data);
-
+int			check_map(t_data *data);
+int			check_walls(t_data *data, int x, int y);
+int			check_spaces(t_data *data, int x, int y);
 
 #endif
