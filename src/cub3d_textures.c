@@ -6,7 +6,7 @@
 /*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 13:03:25 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/24 15:44:41 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/10/29 13:42:39 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,22 @@
 int	cub3d_texture_init(t_data *data, int block)
 {
 	block = TEX_SIZE;
-	data->tex.no.img = mlx_xpm_file_to_image(data->mlx, NORTH, &block, &block);
-	data->tex.so.img = mlx_xpm_file_to_image(data->mlx, SOUTH, &block, &block);
-	data->tex.ea.img = mlx_xpm_file_to_image(data->mlx, EAST, &block, &block);
-	data->tex.we.img = mlx_xpm_file_to_image(data->mlx, WEST, &block, &block);
+	data->tex.no.img = mlx_xpm_file_to_image(data->mlx,
+			data->tex.no.path, &block, &block);
+	data->tex.so.img = mlx_xpm_file_to_image(data->mlx,
+			data->tex.so.path, &block, &block);
+	data->tex.ea.img = mlx_xpm_file_to_image(data->mlx,
+			data->tex.ea.path, &block, &block);
+	data->tex.we.img = mlx_xpm_file_to_image(data->mlx,
+			data->tex.we.path, &block, &block);
 	if (data->tex.no.img == NULL || data->tex.so.img == NULL
 		|| data->tex.ea.img == NULL || data->tex.we.img == NULL)
 	{
 		data->error_check = EXIT_FAILURE;
 		return (EXIT_FAILURE);
 	}
+//
+//	
 	data->tex.no.addr = (int *)mlx_get_data_addr(data->tex.no.img,
 			&data->tex.no.bits_per_pixel, &data->tex.no.line_length,
 			&data->tex.no.endian);

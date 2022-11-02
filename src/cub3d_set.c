@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:30:51 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/25 15:30:17 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:33:00 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
+
+static void	cub3d_free_colours(char **args);
 
 int	cub3d_draw_image(void *input)
 {
@@ -22,4 +24,44 @@ int	cub3d_draw_image(void *input)
 	cub3d_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->image.img, 0, 0);
 	return (EXIT_SUCCESS);
+}
+
+void	cub3d_set_colours(t_data *data, char *line, int type)
+{
+	char	**colours;
+
+	colours = ft_split(line, ',');
+	if (type == 0)
+	{
+		data->draw.ceiling.red = ft_atoi(colours[0]);
+		data->draw.ceiling.green = ft_atoi(colours[1]);
+		data->draw.ceiling.blue = ft_atoi(colours[2]);
+		data->draw.ceiling_colour = cub3d_convert_rgb(data->draw.ceiling);
+	}
+	else if (type == 1)
+	{
+		data->draw.floor.red = ft_atoi(colours[0]);
+		data->draw.floor.green = ft_atoi(colours[1]);
+		data->draw.floor.blue = ft_atoi(colours[2]);
+		data->draw.floor_colour = cub3d_convert_rgb(data->draw.floor);
+	}
+	cub3d_free_colours(colours);
+}
+
+static void	cub3d_free_colours(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i] != NULL)
+	{
+		i += 1;
+	}
+	while (i >= 0)
+	{
+		if (args[i] != NULL)
+			free(args[i]);
+		i -= 1;
+	}
+	free(args);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/30 20:55:24 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:02:35 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_data	*cub3d_setup(char *map);
 static void		*cub3d_error_clean(t_data *new, char *line, int fd);
-static void		cub3d_setup_init(t_data *new, int y, char *line);
+static void		cub3d_setup_init(t_data *new, int y, char *line, int fd);
 
 t_data	*cub3d_init(char *map)
 {
@@ -49,20 +49,17 @@ static t_data	*cub3d_setup(char *map)
 	y = 0;
 	new->error_check = 0;
 	fd = open(map, O_RDONLY);
+	if (fd < 0)
+	{
+		free(new);
+		return (NULL);
+	}
 	line = get_next_line(fd, 0);
-	cub3d_setup_init(new, y, line);
+	cub3d_setup_init(new, y, line, fd);
 	if (new->error_check == EXIT_FAILURE)
 		return (cub3d_error_clean(new, line, fd));
 	while (line != NULL)
 	{
-		if (ft_strlen(line) > 2 && ft_strncmp(line, "NO", 3) \
-			&& ft_strncmp(line, "SO", 3) && ft_strncmp(line, "EA", 3) \
-			&& ft_strncmp(line, "WE", 3) && ft_strncmp(line, "F", 2) \
-			&& ft_strncmp(line, "C", 2))
-		{
-			y += 1;
-			printf("%i\n", y);
-		}
 		y += 1;
 		free(line);
 		line = get_next_line(fd, 0);
@@ -83,10 +80,17 @@ static void	*cub3d_error_clean(t_data *new, char *line, int fd)
 	return (NULL);
 }
 
-static	void	cub3d_setup_init(t_data *new, int y, char *line)
+static	void	cub3d_setup_init(t_data *new, int y, char *line, int fd)
 {
 	new->error_check = 0;
 	// will have to be the first line of map
+	if (cub3d_get_tex_path(new, line, fd))
+	{
+		free(new);
+		line = get_next_line(fd, 1);
+		new->error_check = EXIT_FAILURE;
+		return ;
+	}
 	new->xlen = ft_strlen(line) + 1;
 	new->map = matrix_init(new->xlen, 1, sizeof(t_cell));
 	if (new->map == NULL)

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/30 20:50:00 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:31:45 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -102,6 +103,7 @@ typedef struct s_tex_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	char		*path;
 }	t_tex_img;
 
 typedef struct s_textures
@@ -212,5 +214,7 @@ void		cub3d_minimap(t_data *data);
 int			check_map(t_data *data);
 int			check_walls(t_data *data, int x, int y);
 int			check_spaces(t_data *data, int x, int y);
+int			cub3d_get_tex_path(t_data *data, char *line, int fd);
+void		cub3d_set_colours(t_data *data, char *line, int type);
 
 #endif

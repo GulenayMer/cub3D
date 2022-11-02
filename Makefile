@@ -72,6 +72,7 @@ ifeq ($(uname_S), Linux)
 				$(SRCDIR)cub3d_utils.c			\
 				$(SRCDIR)cub3d_textures.c		\
 				$(SRCDIR)cub3d_minimap.c		\
+				$(SRCDIR)cub3d_map_parsing.c	\
 
 endif
 ifeq ($(uname_S), Darwin)
@@ -90,6 +91,7 @@ ifeq ($(uname_S), Darwin)
 				$(SRCDIR)cub3d_utils.c			\
 				$(SRCDIR)cub3d_textures.c		\
 				$(SRCDIR)cub3d_minimap.c		\
+				$(SRCDIR)cub3d_map_parsing.c	\
 				
 endif
 
