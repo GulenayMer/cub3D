@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 11:31:45 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 12:06:54 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,5 +216,6 @@ int			check_walls(t_data *data, int x, int y);
 int			check_spaces(t_data *data, int x, int y);
 int			cub3d_get_tex_path(t_data *data, char *line, int fd);
 void		cub3d_set_colours(t_data *data, char *line, int type);
+void		*cub3d_error_clean(t_data *new, char *line, int fd);
 
 #endif
