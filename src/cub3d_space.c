@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:25:04 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/30 20:57:32 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:46:35 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	check_left(t_data *data, int x, int y)
 
 static int	check_right(t_data *data, int x, int y)
 {
-	while (x < data->xlen)
+	while (x < data->xlen - 1)
 	{
 		x += 1;
 		if (cub3d_check_square(data, x, y) == TYPE_WALL)

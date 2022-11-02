@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 12:06:54 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:06:13 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@
 
 # define TEX_SIZE	256
 
-# define NORTH "./textures/NorthXL.xpm"
-# define SOUTH "./textures/SouthXL.xpm"
-# define EAST "./textures/EastXL.xpm"
-# define WEST "./textures/WestXL.xpm"
 # define X_OFFSET WIDTH - 30
 # define Y_OFFSET 30
 
@@ -214,8 +210,8 @@ void		cub3d_minimap(t_data *data);
 int			check_map(t_data *data);
 int			check_walls(t_data *data, int x, int y);
 int			check_spaces(t_data *data, int x, int y);
-int			cub3d_get_tex_path(t_data *data, char *line, int fd);
+int			cub3d_map_parsing(t_data *data, char *line, int fd);
 void		cub3d_set_colours(t_data *data, char *line, int type);
-void		*cub3d_error_clean(t_data *new, char *line, int fd);
-
+void		*cub3d_error_clean(t_data *new, int fd);
+int			cub3d_check_max_len(char *map);
 #endif

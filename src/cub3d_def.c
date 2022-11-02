@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 12:06:32 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:01:40 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
 static t_data	*cub3d_setup(char *map);
-static void		cub3d_setup_init(t_data *new, char *line, int fd);
+static void		cub3d_setup_init(t_data *new, int fd);
 
 t_data	*cub3d_init(char *map)
 {
@@ -38,48 +38,51 @@ t_data	*cub3d_init(char *map)
 static t_data	*cub3d_setup(char *map)
 {
 	t_data	*new;
-	char	*line;
 	int		fd;
 
 	new = ft_calloc(1, sizeof(t_data));
 	if (new == NULL)
 		return (NULL);
 	new->error_check = 0;
+	new->xlen = cub3d_check_max_len(map);
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 	{
 		free(new);
 		return (NULL);
 	}
-	line = get_next_line(fd, 0);
-	cub3d_setup_init(new, line, fd);
+	cub3d_setup_init(new, fd);
 	if (new->error_check == EXIT_FAILURE)
-		return (cub3d_error_clean(new, line, fd));
+		return (cub3d_error_clean(new, fd));
 	close(fd);
 	return (new);
 }
 
-void	*cub3d_error_clean(t_data *new, char *line, int fd)
+void	*cub3d_error_clean(t_data *new, int fd)
 {
-	if (line != NULL)
-		free(line);
-	line = get_next_line(fd, 1);
 	close(fd);
 	cub3d_destroyer(new, EXIT_FAILURE);
 	return (NULL);
 }
 
-static	void	cub3d_setup_init(t_data *new, char *line, int fd)
+static	void	cub3d_setup_init(t_data *new, int fd)
 {
+	char	*line;
+
+	line = get_next_line(fd, 0);
 	new->error_check = 0;
-	if (cub3d_get_tex_path(new, line, fd) == EXIT_FAILURE)
+	if (cub3d_map_parsing(new, line, fd) == EXIT_FAILURE)
 	{
 		free(new);
 		line = get_next_line(fd, 1);
 		new->error_check = EXIT_FAILURE;
 		return ;
 	}
-	
+	if (check_map(new) == EXIT_FAILURE)
+	{
+		new->error_check = EXIT_FAILURE;
+		return ;
+	}
 }
 
 int	cub3d_convert_rgb(t_colour rgb)

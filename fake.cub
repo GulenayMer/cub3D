@@ -3,8 +3,8 @@ SO ./textures/SouthXL.xpm
 WE ./textures/WestXL.xpm
 EA ./textures/EastXL.xpm
 
-F 220,100,0
-C 225,30,0
+F 100,100,200
+C 180,180,0
 
 
 1111111111111111111111

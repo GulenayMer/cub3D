@@ -3,19 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_map_parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:25:37 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 12:07:47 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:27:48 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-
-void	cub3d_map_init(t_data *new, char *line)
+int	cub3d_check_max_len(char *map)
 {
-	new->xlen = ft_strlen(line) + 1;
+	int	fd;
+	size_t len;
+	char	*line;
+	
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+	{
+		return (-1);
+	}
+	line = get_next_line(fd, 0);
+	len = ft_strlen(line);
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd, 0);
+		if (line != NULL)
+		{
+			if (ft_strlen(line) > len)
+			len = ft_strlen(line);
+		}
+	}
+	get_next_line(fd, 1);
+	close(fd);
+	return ((int) len);
+}
+
+void	cub3d_map_init(t_data *new)
+{
 	new->map = matrix_init(new->xlen, 1, sizeof(t_cell));
 	if (new->map == NULL)
 	{
@@ -36,26 +62,27 @@ void	*cub3d_map_end(t_data *new, char *line, int fd)
 		line = get_next_line(fd, 0);
 		cub3d_fill_map(new, line, new->map, y);
 		if (new->error_check == EXIT_FAILURE)
-			return (cub3d_error_clean(new, line, fd));
+			return (cub3d_error_clean(new, fd));
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	cub3d_get_tex_path(t_data *data, char *line, int fd)
+int	cub3d_map_parsing(t_data *data, char *line, int fd)
 {
+	//error management
 	int	flag;
 
 	flag = 0;
 	while (line != NULL)
 	{
 		if (ft_strncmp("NO ", line, 3) == 0)
-			data->tex.no.path = &line[3];
+			data->tex.no.path = ft_strtrim(&line[3], "\n");
 		else if (ft_strncmp("SO ", line, 3) == 0)
-			data->tex.so.path = &line[3];
+			data->tex.so.path = ft_strtrim(&line[3], "\n");
 		else if (ft_strncmp("EA ", line, 3) == 0)
-			data->tex.ea.path = &line[3];
+			data->tex.ea.path = ft_strtrim(&line[3], "\n");
 		else if (ft_strncmp("WE ", line, 3) == 0)
-			data->tex.we.path = &line[3];
+			data->tex.we.path = ft_strtrim(&line[3], "\n");
 		else if (ft_strncmp("F", line, 1) == 0)
 			cub3d_set_colours(data, &line[2], 0);
 		else if (ft_strncmp("C", line, 1) == 0)
@@ -70,7 +97,7 @@ int	cub3d_get_tex_path(t_data *data, char *line, int fd)
 		free(line);
 		line = get_next_line(fd, 0);
 	}
-	cub3d_map_init(data, line);
+	cub3d_map_init(data);
 	cub3d_fill_map(data, line, data->map, 0);
 	cub3d_map_end(data, line, fd);
 	return (EXIT_SUCCESS);

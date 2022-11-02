@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_map_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 20:12:05 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/30 20:58:02 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:50:52 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_map(t_data *data)
 	while (y < data->map->count_y)
 	{
 		x = 0;
-		while (x < data->xlen)
+		while (cub3d_check_square(data, x, y) != TYPE_NEWLINE)
 		{
 			if (check_walls(data, x, y))
 				return (EXIT_FAILURE);

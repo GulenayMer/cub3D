@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:20:05 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/26 15:03:22 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:05:32 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	cub3d_draw_line(t_data *data, int col, t_draw draw)
 	while (y < HEIGHT)
 	{
 		if (y < draw.start)
-			cub3d_mlx_pixel_put(data, col, y, BLUE1);
+			cub3d_mlx_pixel_put(data, col, y, data->draw.ceiling_colour);
 		else if (y >= draw.start && y <= draw.end)
 		{
 			while (y <= draw.end)
@@ -46,7 +46,7 @@ void	cub3d_draw_line(t_data *data, int col, t_draw draw)
 			}
 		}
 		else
-			cub3d_mlx_pixel_put(data, col, y, BROWN);
+			cub3d_mlx_pixel_put(data, col, y, data->draw.floor_colour);
 		y += 1;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:30:51 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 11:33:00 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:08:35 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ int	cub3d_draw_image(void *input)
 void	cub3d_set_colours(t_data *data, char *line, int type)
 {
 	char	**colours;
-
-	colours = ft_split(line, ',');
+	char	*ctrl;
+	
+	ctrl = ft_strtrim(line, "\n");
+	colours = ft_split(ctrl, ',');
+	free(ctrl);
 	if (type == 0)
 	{
 		data->draw.ceiling.red = ft_atoi(colours[0]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:57:34 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/12 21:09:06 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:28:51 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ static char	*readjoin(char *buf, char *reader, int rl)
 
 static char	*freepointer(char *str, char *ret)
 {
-	if (str != NULL)
-		free(str);
+	/* if (str != NULL)
+		free(str); */
 	if (ret != NULL)
 		free(ret);
+	str = NULL;
 	return (NULL);
 }
 

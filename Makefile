@@ -1,16 +1,16 @@
 uname_S := $(shell uname -s)
 
 ifeq ($(uname_S), Linux)
-	MINILIBX_DIRECTORY = ./minilibx_linux/
+	MINILIBX_DIRECTORY = ./minilibx
 	MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
 	MLX_INC	= -I minilibx_linux
 	MLX_LNK	= -Lminilibx_linux -lm -lmlx -lXext -lX11 -Iminilibx-linux
 endif
 ifeq ($(uname_S), Darwin)
-	MINILIBX_DIRECTORY = ./minilibx_macos/
+	MINILIBX_DIRECTORY = ./minilibx
 	MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
 	MLX_INC	= -I minilibx_macos
-	MLX_LNK	= -Lminilibx_macos -lm -lmlx -framework OpenGL -framework AppKit -Iminilibx_macos
+	MLX_LNK	= -Lminilibx -lm -lmlx -framework OpenGL -framework AppKit -L /usr/X11/lib -lXext -lX11 -Iminilibx_macos
 endif
 
 ################################################################################
@@ -51,7 +51,7 @@ LIBFT = 		$(LIBDIR)/libft.a
 
 LIBRARIES = 	$(LIBFT) $(MLX_LNK)
 
-INCLUDES = 		$(FT_INC) $(MLX_INC)
+INCLUDES = 		$(MLX_INC) $(FT_INC) 
 
 ################################################################################
 ################################## SRCS & OBJS #################################
@@ -79,7 +79,7 @@ ifeq ($(uname_S), Darwin)
 	SRCS =		$(SRCDIR)cub3d.c				\
 				$(SRCDIR)cub3d_def.c			\
 				$(SRCDIR)cub3d_mlx.c			\
-				$(SRCDIR)cub3d_mac.c			\
+				$(SRCDIR)cub3d_linux.c			\
 				$(SRCDIR)cub3d_set.c			\
 				$(SRCDIR)cub3d_keys.c			\
 				$(SRCDIR)cub3d_pop_map.c		\
