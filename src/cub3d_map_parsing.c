@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:25:37 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 15:27:48 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 16:59:31 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,18 @@ int	cub3d_check_max_len(char *map)
 	{
 		return (-1);
 	}
-	line = get_next_line(fd, 0);
+	line = get_next_line(fd);
 	len = ft_strlen(line);
 	while (line != NULL)
 	{
 		free(line);
-		line = get_next_line(fd, 0);
+		line = get_next_line(fd);
 		if (line != NULL)
 		{
 			if (ft_strlen(line) > len)
 			len = ft_strlen(line);
 		}
 	}
-	get_next_line(fd, 1);
 	close(fd);
 	return ((int) len);
 }
@@ -59,7 +58,7 @@ void	*cub3d_map_end(t_data *new, char *line, int fd)
 	{
 		y += 1;
 		free(line);
-		line = get_next_line(fd, 0);
+		line = get_next_line(fd);
 		cub3d_fill_map(new, line, new->map, y);
 		if (new->error_check == EXIT_FAILURE)
 			return (cub3d_error_clean(new, fd));
@@ -95,7 +94,7 @@ int	cub3d_map_parsing(t_data *data, char *line, int fd)
 			break;
 		}
 		free(line);
-		line = get_next_line(fd, 0);
+		line = get_next_line(fd);
 	}
 	cub3d_map_init(data);
 	cub3d_fill_map(data, line, data->map, 0);

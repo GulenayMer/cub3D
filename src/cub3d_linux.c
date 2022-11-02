@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_linux.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:56:28 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/30 12:27:19 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:39:40 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,13 @@ int	cub3d_destroyer(t_data *data, int exit_status)
 			free(data->mlx);
 	}
 	if (data != NULL)
+	{
 		matrix_cleanup(data->map);
+		free(data->tex.no.path);
+		free(data->tex.so.path);
+		free(data->tex.we.path);
+		free(data->tex.ea.path);
+	}	
 	if (data != NULL)
 		free(data);
 	if (exit_status == EXIT_SUCCESS)

@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 15:01:40 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:35:30 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,11 @@ static	void	cub3d_setup_init(t_data *new, int fd)
 {
 	char	*line;
 
-	line = get_next_line(fd, 0);
+	line = get_next_line(fd);
 	new->error_check = 0;
 	if (cub3d_map_parsing(new, line, fd) == EXIT_FAILURE)
 	{
 		free(new);
-		line = get_next_line(fd, 1);
 		new->error_check = EXIT_FAILURE;
 		return ;
 	}
@@ -97,7 +96,6 @@ int	cub3d_convert_rgb(t_colour rgb)
 	temp2 = ft_convert2hexa(rgb.green);
 	temp3 = ft_convert2hexa(rgb.blue);
 	temp4 = ft_strjoin(temp1, temp2);
-	free(temp1);
 	temp1 = ft_strjoin(temp4, temp3);
 	ret = ft_convertfromhexa(temp1);
 	free(temp1);

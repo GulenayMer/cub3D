@@ -6,112 +6,135 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:57:34 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 15:28:51 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:37:34 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "../header/libft.h"
-
-static char	*readjoin(char *buf, char *reader, int rl);
-static char	*linecatcher(char **reader);
-static char	*newlinegen(char *str, int *i);
-static char	*freepointer(char *str, char *ret);
-
-char	*get_next_line(int fd, int check)
+char	*ft_strjoin_gnl(char *chars_saved, char *temp)
 {
-	static char	*reader;
-	char		buf[100 + 1];
-	int			readlen;
+	size_t	len;
+	size_t  len1;
+	size_t	len2;
+	char	*new;
 
-	if (check == 1)
+	if (!chars_saved && !temp)
+		return (0);
+	if (chars_saved == NULL)
+		len1 = 0;
+	else
+		len1 = ft_strlen((char *)chars_saved);
+	if (temp == NULL)
+		len2 = 0;
+	else
+			len2 = ft_strlen((char *)temp);
+	len = len1 + len2;
+	new = malloc(sizeof(char) * (len + 1));
+	if (!new)
+		return (0);
+	ft_memmove(new, chars_saved, len1);
+	ft_memmove(new + len1, temp, len2);
+	new[len] = '\0';
+	free(chars_saved);
+	return (new);
+}
+
+char	*ft_update_static(char *chars_read)
+{
+	char	*new_static;
+	int		i;
+	int		j;
+	int		size;
+
+	i = 0;
+	size = ft_strlen(chars_read);
+	while (chars_read[i] != '\n' && chars_read[i] != '\0')
+		i++;
+	if (!chars_read[i])
 	{
-		return (freepointer(reader, NULL));
+		free(chars_read);
+		return (0);
 	}
+	new_static = (char *)malloc(sizeof(char) * (size - i) + 1);
+	if (!new_static)
+		return (0);
+	i++;
+	j = 0;
+	while (chars_read[i] != '\0')
+		new_static[j++] = chars_read[i++];
+	new_static[j] = '\0';
+	free(chars_read);
+	return (new_static);
+}
+
+char	*ft_extract_line(char *chars_read)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	if (!chars_read[i])
+		return (0);
+	while (chars_read[i] != '\n' && chars_read[i] != '\0')
+		i++;
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return (0);
+	i = 0;
+	while (chars_read[i] != '\n' && chars_read[i] != '\0')
+	{
+		line[i] = chars_read[i];
+		i++;
+	}
+	if (chars_read[i] == '\n')
+	{
+		line[i] = chars_read[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+char	*ft_read_file(int fd, char *chars_read)
+{
+	int		bytes_read;
+	char	*buffer;
+
+	buffer = (char *)malloc(sizeof(char) * (100 + 1));
+	if (!buffer)
+		return (0);
+	bytes_read = 1;
+	while (!ft_strchr(chars_read, '\n') && bytes_read != 0)
+	{
+		bytes_read = read(fd, buffer, 100);
+		if (bytes_read < 0)
+		{
+			free(buffer);
+			return (0);
+		}
+		else
+		{
+			buffer[bytes_read] = '\0';
+			chars_read = ft_strjoin_gnl(chars_read, buffer);
+		}
+	}
+	free(buffer);
+	return (chars_read);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*chars_read;
+	char		*line;
+
 	if (fd < 0)
-		return (NULL);
-	readlen = read(fd, buf, 100);
-	if (readlen < 0)
-		return (NULL);
-	while (readlen > 0)
-	{
-		buf[readlen] = '\0';
-		reader = readjoin(buf, reader, readlen);
-		if (ft_strchr(reader, '\n') != NULL)
-			break ;
-		readlen = read(fd, buf, 100);
-	}
-	if (readlen == 0 && reader == NULL)
-		return (NULL);
-	return (linecatcher(&reader));
-}
-
-static char	*readjoin(char *buf, char *reader, int rl)
-{
-	char	*tmp;
-
-	if (buf == NULL)
-		return (NULL);
-	if (reader == NULL || ft_strlen(reader) == 0)
-	{
-		tmp = malloc((rl + 1) * sizeof(char));
-		if (tmp == NULL)
-			return (NULL);
-		ft_strlcpy(tmp, buf, rl + 1);
-		free(reader);
-		return (tmp);
-	}
-	tmp = reader;
-	reader = ft_strjoin(tmp, buf);
-	free(tmp);
-	return (reader);
-}
-
-static char	*freepointer(char *str, char *ret)
-{
-	/* if (str != NULL)
-		free(str); */
-	if (ret != NULL)
-		free(ret);
-	str = NULL;
-	return (NULL);
-}
-
-static char	*linecatcher(char **reader)
-{
-	char	*ret;
-	char	*str;
-	int		len;
-
-	str = *reader;
-	len = 0;
-	ret = newlinegen(str, &len);
-	if (ret == NULL)
-		return (freepointer(str, ret));
-	if (ft_strlen(ret) == 0)
-		return (freepointer(str, ret));
-	*reader = malloc(((ft_strlen(str) - len + 1)) * sizeof(char));
-	if (*reader == NULL)
-		return (freepointer(str, ret));
-	ft_strlcpy(*reader, &str[len], ft_strlen(str) - len + 1);
-	free(str);
-	return (ret);
-}
-
-static char	*newlinegen(char *str, int *i)
-{
-	char	*dest;
-
-	while (str[*i] != '\n' && str[*i] != '\0' )
-		*i = *i + 1;
-	if (str[*i] == '\n')
-		*i = *i + 1;
-	if (ft_strlen(str) == 0)
-		return (NULL);
-	dest = malloc(((*i) + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	ft_strlcpy(dest, str, *i + 1);
-	return (dest);
+		return (0);
+	chars_read = ft_read_file(fd, chars_read);
+	if (!chars_read)
+		return (0);
+	line = ft_extract_line(chars_read);
+	chars_read = ft_update_static(chars_read);
+	return (line);
 }

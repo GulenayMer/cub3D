@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 10:02:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/12 21:09:28 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:38:16 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
 char		*ft_strdup(const char *s);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
-char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strjoin(const char *s1, const char *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
@@ -69,7 +69,7 @@ int			hexprinter(int fd, char *flags, unsigned int num);
 int			pointerprinter(int fd, unsigned long ptr);
 int			percentprinter(int fd, char *flags);
 int			ft_printf(int fd, const char *s, ...);
-char		*get_next_line(int fd, int check);
+char		*get_next_line(int fd);
 int			ft_power(int base, int exp);
 int			ft_convertfromhexa(char *hexa);
 #endif
