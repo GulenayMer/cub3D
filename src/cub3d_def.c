@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/03 11:18:56 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:30:20 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ static t_data	*cub3d_setup(char *map)
 	if (new == NULL)
 		return (NULL);
 	new->error_check = 0;
-	new->xlen = cub3d_check_max_len(map);
+	new->xlen = cub3d_check_max_len(map) + 1;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 	{
 		free(new);
 		return (NULL);
 	}
+	new->name = map;
 	cub3d_setup_init(new, fd);
 	if (new->error_check == EXIT_FAILURE)
 		return (cub3d_error_clean(new, fd));
@@ -74,7 +75,7 @@ static	void	cub3d_setup_init(t_data *new, int fd)
 	if (cub3d_map_parsing(new, line, fd) == EXIT_FAILURE)
 	{
 		// might need to be deleted
-		free(new);
+		//free(new);
 		new->error_check = EXIT_FAILURE;
 		return ;
 	}

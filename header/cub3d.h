@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/03 13:41:59 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:44:10 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,15 @@ typedef struct s_tex_img
 	int			endian;
 	char		*path;
 }	t_tex_img;
+typedef struct s_tex_validator
+{
+	int			no;
+	int			so;
+	int			we;
+	int			ea;
+	int			c;
+	int			f;
+} t_tex_validator;
 
 typedef struct s_textures
 {
@@ -108,6 +117,7 @@ typedef struct s_textures
 	t_tex_img		we;
 	t_tex_img		ea;
 	t_coord			coord;
+	t_tex_validator	val;
 	double			wall_x;
 	double			step;
 	double			tex_pos;
@@ -171,6 +181,8 @@ typedef struct s_data
 	t_draw		draw;
 	t_image		image;
 	t_coord		mouse;
+	char		*name;
+	int			player_check;
 	int			ctr_x;
 	double		camera_x;
 	void		*mlx;
@@ -210,7 +222,7 @@ int			check_map(t_data *data);
 int			check_walls(t_data *data, int x, int y);
 int			check_spaces(t_data *data, int x, int y);
 int			cub3d_map_parsing(t_data *data, char *line, int fd);
-void		cub3d_set_colours(t_data *data, char *line, int type);
+int			cub3d_set_colours(t_data *data, char *line, int type);
 void		*cub3d_error_clean(t_data *new, int fd);
 int			cub3d_check_max_len(char *map);
 #endif

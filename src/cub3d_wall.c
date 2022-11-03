@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 22:07:12 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/03 11:37:38 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 14:32:32 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,8 @@ static int	check_bottom_wall(t_data *data, int x, int y)
 	while (y < data->map->count_y)
 	{
 		y += 1;
-		if (y == data->map->count_y)
-			y -= 1;
 		type = cub3d_check_square(data, x, y);
-		if (type == TYPE_WALL)
+		if (type == TYPE_WALL || type == TYPE_END)
 			return (EXIT_SUCCESS);
 	}
 	ft_putstr_fd("Error, floor must be surronded by the walls!\n", 2);

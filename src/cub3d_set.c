@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:30:51 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 14:08:35 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:45:57 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	cub3d_draw_image(void *input)
 	return (EXIT_SUCCESS);
 }
 
-void	cub3d_set_colours(t_data *data, char *line, int type)
+int	cub3d_set_colours(t_data *data, char *line, int type)
 {
 	char	**colours;
 	char	*ctrl;
@@ -34,6 +34,10 @@ void	cub3d_set_colours(t_data *data, char *line, int type)
 	ctrl = ft_strtrim(line, "\n");
 	colours = ft_split(ctrl, ',');
 	free(ctrl);
+	if ((ft_atoi(colours[0]) > 255 || ft_atoi(colours[0]) < 0)
+	|| (ft_atoi(colours[1]) > 255 || ft_atoi(colours[1]) < 0)
+	|| (ft_atoi(colours[2]) > 255 || ft_atoi(colours[2]) < 0))
+		return (EXIT_FAILURE);
 	if (type == 0)
 	{
 		data->draw.ceiling.red = ft_atoi(colours[0]);
@@ -49,6 +53,7 @@ void	cub3d_set_colours(t_data *data, char *line, int type)
 		data->draw.floor_colour = cub3d_convert_rgb(data->draw.floor);
 	}
 	cub3d_free_colours(colours);
+	return (EXIT_SUCCESS);
 }
 
 static void	cub3d_free_colours(char **args)
