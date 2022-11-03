@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 15:06:13 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 13:41:59 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # include "messages.h"
 # include "controls.h"
 # include "colours.h"
-# include "../minilibx_linux/mlx.h"
-# include "../minilibx_macos/mlx.h"
+# include "../minilibx/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <sys/time.h>
