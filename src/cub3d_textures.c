@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 13:03:25 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/10/29 13:42:39 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/03 16:55:33 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	cub3d_texture_init(t_data *data, int block)
 		data->error_check = EXIT_FAILURE;
 		return (EXIT_FAILURE);
 	}
-//
-//	
 	data->tex.no.addr = (int *)mlx_get_data_addr(data->tex.no.img,
 			&data->tex.no.bits_per_pixel, &data->tex.no.line_length,
 			&data->tex.no.endian);

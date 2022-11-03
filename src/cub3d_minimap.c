@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:27:38 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/03 12:16:29 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:20:39 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void		cub3d_draw_minimap(t_data *data, int tile, int offset_x,
 					int offset_y);
 static void		cub3d_draw_player(t_data *data);
 static void		cub3d_minimap_setup(t_data *data);
+static int		cub3d_draw_minimap_helper(int tile, int colour);
 
 void	cub3d_minimap(t_data *data)
 {
@@ -32,7 +33,8 @@ void	cub3d_minimap(t_data *data)
 				> TYPE_FLOOR)
 				cub3d_draw_minimap(data, 1, data->minimap.iter.x,
 					data->minimap.iter.y);
-			else if(cub3d_check_square(data, data->minimap.map.x, data->minimap.map.y) == TYPE_FLOOR)
+			else if (cub3d_check_square
+				(data, data->minimap.map.x, data->minimap.map.y) == TYPE_FLOOR)
 				cub3d_draw_minimap(data, 0, data->minimap.iter.x,
 					data->minimap.iter.y);
 			data->minimap.map.x += 1;
@@ -60,7 +62,7 @@ static t_coord	cub3d_minimap_unit_size(t_data *data)
 }
 
 static void	cub3d_draw_minimap(t_data *data, int tile, int offset_x,
-	int offset_y)
+		int offset_y)
 {
 	int	x;
 	int	y;
@@ -68,12 +70,8 @@ static void	cub3d_draw_minimap(t_data *data, int tile, int offset_x,
 
 	x = 0;
 	y = 0;
-	if (tile == 0)
-		colour = BLACK;
-	else if (tile == 1)
-		colour = WHITE;
-	else if (tile == -1)
-		colour = RED;
+	colour = 0;
+	colour = cub3d_draw_minimap_helper(tile, colour);
 	while (y < data->minimap.unit.y)
 	{
 		while (x < data->minimap.unit.x)
@@ -89,6 +87,17 @@ static void	cub3d_draw_minimap(t_data *data, int tile, int offset_x,
 		x = 0;
 	}
 	data->minimap.iter.y = offset_y;
+}
+
+static int	cub3d_draw_minimap_helper(int tile, int colour)
+{
+	if (tile == 0)
+		colour = BLACK;
+	else if (tile == 1)
+		colour = WHITE;
+	else if (tile == -1)
+		colour = RED;
+	return (colour);
 }
 
 static void	cub3d_draw_player(t_data *data)
@@ -126,4 +135,3 @@ static void	cub3d_minimap_setup(t_data *data)
 	data->minimap.iter.x = X_OFFSET - data->minimap.size.x;
 	data->minimap.iter.y = Y_OFFSET;
 }
-

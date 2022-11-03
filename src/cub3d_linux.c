@@ -6,11 +6,13 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:56:28 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 15:39:40 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:13:04 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
+
+static void	cub3d_destroyer_helper(t_data *data);
 
 int	cub3d_destroyer(t_data *data, int exit_status)
 {
@@ -28,16 +30,21 @@ int	cub3d_destroyer(t_data *data, int exit_status)
 	}
 	if (data != NULL)
 	{
-		matrix_cleanup(data->map);
-		free(data->tex.no.path);
-		free(data->tex.so.path);
-		free(data->tex.we.path);
-		free(data->tex.ea.path);
-	}	
+		cub3d_destroyer_helper(data);
+	}
 	if (data != NULL)
 		free(data);
 	if (exit_status == EXIT_SUCCESS)
 		exit(exit_status);
 	else
 		return (exit_status);
+}
+
+static void	cub3d_destroyer_helper(t_data *data)
+{
+	matrix_cleanup(data->map);
+	free(data->tex.no.path);
+	free(data->tex.so.path);
+	free(data->tex.we.path);
+	free(data->tex.ea.path);
 }

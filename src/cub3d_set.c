@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:30:51 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/03 15:45:57 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:56:31 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	cub3d_set_colours(t_data *data, char *line, int type)
 {
 	char	**colours;
 	char	*ctrl;
-	
+
 	ctrl = ft_strtrim(line, "\n");
 	colours = ft_split(ctrl, ',');
 	free(ctrl);
 	if ((ft_atoi(colours[0]) > 255 || ft_atoi(colours[0]) < 0)
-	|| (ft_atoi(colours[1]) > 255 || ft_atoi(colours[1]) < 0)
-	|| (ft_atoi(colours[2]) > 255 || ft_atoi(colours[2]) < 0))
+		|| (ft_atoi(colours[1]) > 255 || ft_atoi(colours[1]) < 0)
+		|| (ft_atoi(colours[2]) > 255 || ft_atoi(colours[2]) < 0))
 		return (EXIT_FAILURE);
 	if (type == 0)
 	{

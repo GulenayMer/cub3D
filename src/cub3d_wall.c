@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 22:07:12 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/03 14:32:32 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:55:04 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	check_right_wall(t_data *data, int x, int y);
 	no space is accepted! */
 int	check_walls(t_data *data, int x, int y)
 {
-	int type;
-	
+	int	type;
+
 	type = cub3d_check_square(data, x, y);
 	if (type == TYPE_FLOOR)
 	{
@@ -36,7 +36,7 @@ int	check_walls(t_data *data, int x, int y)
 
 static int	check_top_wall(t_data *data, int x, int y)
 {
-	int type;
+	int	type;
 
 	while (y >= 0)
 	{
@@ -53,8 +53,8 @@ static int	check_top_wall(t_data *data, int x, int y)
 
 static int	check_bottom_wall(t_data *data, int x, int y)
 {
-	int type;
-	
+	int	type;
+
 	while (y < data->map->count_y)
 	{
 		y += 1;
@@ -69,7 +69,7 @@ static int	check_bottom_wall(t_data *data, int x, int y)
 int	check_left_wall(t_data *data, int x, int y)
 {
 	int	type;
-	
+
 	while (x >= 0)
 	{
 		x -= 1;
@@ -86,7 +86,7 @@ int	check_left_wall(t_data *data, int x, int y)
 int	check_right_wall(t_data *data, int x, int y)
 {
 	int	type;
-	
+
 	while (cub3d_check_square(data, x, y) != TYPE_NEWLINE)
 	{
 		x += 1;
