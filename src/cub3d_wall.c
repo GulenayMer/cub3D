@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 22:07:12 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/02 14:47:03 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 11:37:38 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ static int	check_right_wall(t_data *data, int x, int y);
 	no space is accepted! */
 int	check_walls(t_data *data, int x, int y)
 {
-	if (cub3d_check_square(data, x, y) == TYPE_FLOOR)
+	int type;
+	
+	type = cub3d_check_square(data, x, y);
+	if (type == TYPE_FLOOR)
 	{
 		if (check_top_wall(data, x, y) || check_bottom_wall(data, x, y) \
 			|| check_left_wall(data, x, y) || check_right_wall(data, x, y))
@@ -33,10 +36,15 @@ int	check_walls(t_data *data, int x, int y)
 
 static int	check_top_wall(t_data *data, int x, int y)
 {
-	while (y > 0)
+	int type;
+
+	while (y >= 0)
 	{
 		y -= 1;
-		if (cub3d_check_square(data, x, y) == TYPE_WALL)
+		if (y < 0)
+			y = 0;
+		type = cub3d_check_square(data, x, y);
+		if (type == TYPE_WALL || type == TYPE_NEWLINE)
 			return (EXIT_SUCCESS);
 	}
 	ft_putstr_fd("Error, floor must be surronded by the walls!\n", 2);
@@ -45,10 +53,15 @@ static int	check_top_wall(t_data *data, int x, int y)
 
 static int	check_bottom_wall(t_data *data, int x, int y)
 {
+	int type;
+	
 	while (y < data->map->count_y)
 	{
 		y += 1;
-		if (cub3d_check_square(data, x, y) == TYPE_WALL)
+		if (y == data->map->count_y)
+			y -= 1;
+		type = cub3d_check_square(data, x, y);
+		if (type == TYPE_WALL)
 			return (EXIT_SUCCESS);
 	}
 	ft_putstr_fd("Error, floor must be surronded by the walls!\n", 2);
@@ -57,10 +70,15 @@ static int	check_bottom_wall(t_data *data, int x, int y)
 
 int	check_left_wall(t_data *data, int x, int y)
 {
-	while (x > 0)
+	int	type;
+	
+	while (x >= 0)
 	{
 		x -= 1;
-		if (cub3d_check_square(data, x, y) == TYPE_WALL)
+		if (x < 0)
+			x = 0;
+		type = cub3d_check_square(data, x, y);
+		if (type == TYPE_WALL)
 			return (EXIT_SUCCESS);
 	}
 	ft_putstr_fd("Error, floor must be surronded by the walls!\n", 2);
@@ -69,10 +87,15 @@ int	check_left_wall(t_data *data, int x, int y)
 
 int	check_right_wall(t_data *data, int x, int y)
 {
-	while (x < data->xlen - 1)
+	int	type;
+	
+	while (cub3d_check_square(data, x, y) != TYPE_NEWLINE)
 	{
 		x += 1;
-		if (cub3d_check_square(data, x, y) == TYPE_WALL)
+		type = cub3d_check_square(data, x, y);
+		if (type == TYPE_NEWLINE)
+			return (EXIT_SUCCESS);
+		if (type == TYPE_WALL)
 			return (EXIT_SUCCESS);
 	}
 	ft_putstr_fd("Error, floor must be surronded by the walls!\n", 2);

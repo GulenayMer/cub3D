@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:27:38 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/29 13:00:18 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/03 12:16:29 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,18 @@ static void		cub3d_minimap_setup(t_data *data);
 void	cub3d_minimap(t_data *data)
 {
 	cub3d_minimap_setup(data);
-	while (cub3d_check_square(data, data->minimap.map.x, data->minimap.map.y)
-		!= TYPE_NOTHING)
+	while (data->minimap.map.y < data->map->count_y)
 	{
 		while (cub3d_check_square(data, data->minimap.map.x,
 				data->minimap.map.y) < TYPE_NEWLINE && cub3d_check_square(
-				data, data->minimap.map.x, data->minimap.map.y) >= TYPE_FLOOR)
+				data, data->minimap.map.x, data->minimap.map.y) >= TYPE_NOTHING)
 		{	
 			if (cub3d_check_square(
 					data, data->minimap.map.x, data->minimap.map.y)
 				> TYPE_FLOOR)
 				cub3d_draw_minimap(data, 1, data->minimap.iter.x,
 					data->minimap.iter.y);
-			else
+			else if(cub3d_check_square(data, data->minimap.map.x, data->minimap.map.y) == TYPE_FLOOR)
 				cub3d_draw_minimap(data, 0, data->minimap.iter.x,
 					data->minimap.iter.y);
 			data->minimap.map.x += 1;
@@ -73,6 +72,8 @@ static void	cub3d_draw_minimap(t_data *data, int tile, int offset_x,
 		colour = BLACK;
 	else if (tile == 1)
 		colour = WHITE;
+	else if (tile == -1)
+		colour = RED;
 	while (y < data->minimap.unit.y)
 	{
 		while (x < data->minimap.unit.x)

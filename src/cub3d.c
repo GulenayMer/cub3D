@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:00:45 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 13:49:06 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/03 11:20:37 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	data = cub3d_init(argv[1]);
 	if (data == NULL)
-	{
-		ft_printf(STDERR_FILENO, ERROR_INVALID_MAP, argv[1]);
 		return (cub3d_destroyer(data, EXIT_FAILURE));
-	}
 	mlx_loop_hook(data->mlx, cub3d_draw_image, data);
 	mlx_hook(data->win, 2, 1L << 0L, cub3d_key_press, data);
 	mlx_hook(data->win, 6, (1L << 6), cub3d_mlx_mouse, data);
