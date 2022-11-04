@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 15:57:34 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/02 17:40:42 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:11:38 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char	*ft_strjoin_gnl(char *chars_saved, char *temp)
 {
 	size_t	len;
-	size_t  len1;
+	size_t	len1;
 	size_t	len2;
 	char	*new;
 

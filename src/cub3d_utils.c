@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 17:20:05 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/02 14:05:32 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:03:25 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,17 @@ int	cub3d_check_square(t_data *data, int x, int y)
 
 void	cub3d_check_fps(t_data *data)
 {
+	data->fps.move_speed = 0.4;
+	data->fps.rotate_speed = 0.2;
+}
+/* 
+void	cub3d_check_fps(t_data *data)
+{
 	data->fps.old_time = data->fps.cur_time;
 	data->fps.cur_time = cub3d_get_time();
 	data->fps.frame_time = (data->fps.cur_time - data->fps.old_time) / 1000.0;
-	//printf("FPS: %f\n", 1.0 / data->fps.frame_time);
 	data->fps.move_speed = data->fps.frame_time * 5.0;
 	data->fps.rotate_speed = data->fps.frame_time * 3.0;
-}
+	data->fps.move_speed = 0.4;
+	data->fps.rotate_speed = 0.2;
+} */

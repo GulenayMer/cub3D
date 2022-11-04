@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:05:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/04 11:49:25 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:43:02 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*cub3d_parsing_main_loop(t_data *data, char *line, int fd)
 		else if (ft_strncmp("C", line, 1) == 0)
 			data->flag = cub3d_colour_check(data, line, "C ");
 		else if (ft_strncmp("\n", line, 1) == 0)
-			cub3d_get_time();
+			data->counter += 1;
 		else if (ft_strncmp("\n", line, 1) != 0 && data->flag == 1)
 			break ;
 		else

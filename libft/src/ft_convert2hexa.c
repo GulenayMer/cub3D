@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert2hexa.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 16:49:37 by jrocha            #+#    #+#             */
-/*   Updated: 2022/03/18 12:59:31 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/04 14:35:28 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ char	*ft_convert2hexa(unsigned long i)
 	char			*hex;
 	unsigned long	wi;
 
+	if (i == 0)
+	{
+		hex = ft_strdup("00");
+		return (hex);
+	}
 	wi = i;
 	cnt = 0;
 	while (wi > 0)

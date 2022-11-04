@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:25:37 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/04 11:39:56 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 15:03:05 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ int	cub3d_map_end(t_data *new, char *line, int fd)
 		line = get_next_line(fd);
 		cub3d_fill_map(new, line, new->map, y);
 		if (new->error_check == EXIT_FAILURE)
+		{
+			ft_printf(STDERR_FILENO, INVALID_VALUES, new->name);
 			return (EXIT_FAILURE);
+		}
 	}
 	return (EXIT_SUCCESS);
 }

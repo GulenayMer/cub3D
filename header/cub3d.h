@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/04 11:52:55 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:19:07 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ typedef struct s_data
 	int			xlen;
 	int			error_check;
 	int			check_row;
+	int			counter;
 }	t_data;
 
 t_data		*cub3d_init(char *map);

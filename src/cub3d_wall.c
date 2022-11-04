@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 22:07:12 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/03 16:55:04 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:15:31 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	check_top_wall(t_data *data, int x, int y)
 		if (type == TYPE_WALL || type == TYPE_NEWLINE)
 			return (EXIT_SUCCESS);
 	}
-	ft_putstr_fd("Error, floor must be surronded by the walls!\n", 2);
+	ft_printf(STDERR_FILENO, WALL_ERR);
 	return (EXIT_FAILURE);
 }
 
@@ -62,7 +62,7 @@ static int	check_bottom_wall(t_data *data, int x, int y)
 		if (type == TYPE_WALL || type == TYPE_END)
 			return (EXIT_SUCCESS);
 	}
-	ft_putstr_fd("Error, floor must be surronded by the walls!\n", 2);
+	ft_printf(STDERR_FILENO, WALL_ERR);
 	return (EXIT_FAILURE);
 }
 
@@ -79,7 +79,7 @@ int	check_left_wall(t_data *data, int x, int y)
 		if (type == TYPE_WALL)
 			return (EXIT_SUCCESS);
 	}
-	ft_putstr_fd("Error, floor must be surronded by the walls!\n", 2);
+	ft_printf(STDERR_FILENO, WALL_ERR);
 	return (EXIT_FAILURE);
 }
 
@@ -96,6 +96,6 @@ int	check_right_wall(t_data *data, int x, int y)
 		if (type == TYPE_WALL)
 			return (EXIT_SUCCESS);
 	}
-	ft_putstr_fd("Error, floor must be surronded by the walls!\n", 2);
+	ft_printf(STDERR_FILENO, WALL_ERR);
 	return (EXIT_FAILURE);
 }

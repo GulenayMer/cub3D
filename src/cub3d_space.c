@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:25:04 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/03 11:41:36 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:00:52 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ static int	check_top(t_data *data, int x, int y)
 		if (y < 0)
 			y = 0;
 		type = cub3d_check_square(data, x, y);
-		if (type == TYPE_WALL || type == TYPE_NOTHING)
+		if (type == TYPE_WALL || type == TYPE_NOTHING || type == TYPE_NEWLINE || type == TYPE_END)
 			return (EXIT_SUCCESS);
 		if (type == TYPE_FLOOR)
 		{
-			ft_putstr_fd("Error, empty spaces inside the map!\n", 2);
+			ft_printf(STDERR_FILENO, SPACE_ERR);
 			return (EXIT_FAILURE);
 		}
 	}
@@ -57,11 +57,11 @@ static int	check_bottom(t_data *data, int x, int y)
 	{
 		y += 1;
 		type = cub3d_check_square(data, x, y);
-		if (type == TYPE_WALL || type == TYPE_NOTHING)
+		if (type == TYPE_WALL || type == TYPE_NOTHING || type == TYPE_NEWLINE || type == TYPE_END)
 			return (EXIT_SUCCESS);
 		if (type == TYPE_FLOOR)
 		{
-			ft_putstr_fd("Error, empty spaces inside the map!\n", 2);
+			ft_printf(STDERR_FILENO, SPACE_ERR);
 			return (EXIT_FAILURE);
 		}
 	}
@@ -78,11 +78,11 @@ static int	check_left(t_data *data, int x, int y)
 		if (x < 0)
 			x = 0;
 		type = cub3d_check_square(data, x, y);
-		if (type == TYPE_WALL || type == TYPE_NOTHING)
+		if (type == TYPE_WALL || type == TYPE_NOTHING || type == TYPE_NEWLINE || type == TYPE_END)
 			return (EXIT_SUCCESS);
 		if (type == TYPE_FLOOR)
 		{
-			ft_putstr_fd("Error, empty spaces inside the map!\n", 2);
+			ft_printf(STDERR_FILENO, SPACE_ERR);
 			return (EXIT_FAILURE);
 		}
 	}
@@ -101,7 +101,7 @@ static int	check_right(t_data *data, int x, int y)
 			return (EXIT_SUCCESS);
 		if (type == TYPE_FLOOR)
 		{
-			ft_putstr_fd("Error, empty spaces inside the map!\n", 2);
+			ft_printf(STDERR_FILENO, SPACE_ERR);
 			return (EXIT_FAILURE);
 		}
 	}

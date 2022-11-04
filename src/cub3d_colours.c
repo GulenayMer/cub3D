@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:56:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/04 12:11:48 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:23:18 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	cub3d_ctrl_colour(char **colours);
 static void	cub3d_free_colours(char **args);
-
 
 int	cub3d_set_colours(t_data *data, char *line, int type)
 {
@@ -86,7 +85,7 @@ int	cub3d_colour_check(t_data *data, char *line, char *type)
 	}
 	else if (ft_strncmp("C ", type, 2) == 0)
 	{
-		if (cub3d_set_colours(data, &line[2], 1) == EXIT_FAILURE)
+		if (cub3d_set_colours(data, &line[2], 0) == EXIT_FAILURE)
 		{
 			ft_printf(STDERR_FILENO, INVALID_VALUES, data->name);
 			data->error_check = 1;

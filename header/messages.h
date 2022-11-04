@@ -6,10 +6,9 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:12:36 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/03 15:53:25 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:16:59 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MESSAGES_H
 # define MESSAGES_H
@@ -32,4 +31,10 @@ You must provide a .cub file.\n"
 
 # define INVALID_PATH "Error\ncub3D: %s could not open file.\n"
 
+# define TEXTURE_PROBLEM "Error\ncub3D: There was a problem loading\
+ the textures\n"
+
+# define WALL_ERR "Error\ncub3D: Floor must be surrounded by the walls!\n"
+
+# define SPACE_ERR "Error\ncub3D: There are empty spaces inside the map!\n"
 #endif
