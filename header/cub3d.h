@@ -6,10 +6,9 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/03 17:37:11 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:52:55 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -24,7 +23,6 @@
 # include <stdio.h>
 # include <sys/time.h>
 # include <math.h>
-#include <stdio.h>
 
 # if !defined (HEIGHT)
 #  define HEIGHT	720
@@ -35,9 +33,10 @@
 # endif
 
 # define TEX_SIZE	256
-
 # define X_OFFSET WIDTH - 30
 # define Y_OFFSET 30
+# define TRUE 1
+# define FALSE 0
 
 typedef enum e_type
 {
@@ -54,7 +53,6 @@ typedef enum e_type
 	TYPE_W,
 	TYPE_NEWLINE,
 }	t_type;
-
 
 typedef struct s_cell
 {
@@ -125,7 +123,6 @@ typedef struct s_textures
 	int				colour;
 }	t_textures;
 
-
 typedef struct s_ray
 {
 	t_pos		pos;
@@ -187,6 +184,7 @@ typedef struct s_data
 	double		camera_x;
 	void		*mlx;
 	void		*win;
+	int			flag;
 	int			xlen;
 	int			error_check;
 	int			check_row;
@@ -229,4 +227,9 @@ void		cub3d_validator_init(t_data *data);
 int			cub3d_validator(t_data *data);
 void		cub3d_map_init(t_data *new);
 int			cub3d_map_end(t_data *new, char *line, int fd);
+int			cub3d_check_tex_path(char *path);
+int			cub3d_colour_check(t_data *data, char *line, char *type);
+void		cub3d_draw_minimap(t_data *data, int tile, int offset_x,
+				int offset_y);
+void		cub3d_draw_player(t_data *data);
 #endif

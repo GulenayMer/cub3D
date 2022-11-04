@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 20:12:05 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/03 17:45:50 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 10:39:41 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	cub3d_check_tex_path(char *path)
 	close(fd);
 	return (EXIT_SUCCESS);
 }
-
+/* 
 int	cub3d_map_parsing(t_data *data, char *line, int fd)
 {
 	int	flag;
@@ -136,3 +136,4 @@ int	cub3d_map_parsing(t_data *data, char *line, int fd)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+ */

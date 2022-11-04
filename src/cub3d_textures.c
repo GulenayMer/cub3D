@@ -6,14 +6,25 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 13:03:25 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/03 16:55:33 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 12:06:20 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
+static int	cub3d_texture_assign(t_data *data, int block);
+static int	cub3d_texture_address_set(t_data *data);
+
 // IF IT RETURN FAILURE MAP DOES NOT EXIST
 int	cub3d_texture_init(t_data *data, int block)
+{
+	if (cub3d_texture_assign(data, block) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	cub3d_texture_address_set(data);
+	return (EXIT_SUCCESS);
+}
+
+static int	cub3d_texture_assign(t_data *data, int block)
 {
 	block = TEX_SIZE;
 	data->tex.no.img = mlx_xpm_file_to_image(data->mlx,
@@ -30,6 +41,11 @@ int	cub3d_texture_init(t_data *data, int block)
 		data->error_check = EXIT_FAILURE;
 		return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
+}
+
+static int	cub3d_texture_address_set(t_data *data)
+{
 	data->tex.no.addr = (int *)mlx_get_data_addr(data->tex.no.img,
 			&data->tex.no.bits_per_pixel, &data->tex.no.line_length,
 			&data->tex.no.endian);

@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/03 15:30:20 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 12:08:42 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_data	*cub3d_init(char *map)
 	data->mouse.y = HEIGHT / 2;
 	// CONTROL NULL
 	cub3d_mlx_init(data);
-	cub3d_texture_init(data, block);
+	data->error_check = cub3d_texture_init(data, block);
 	return (data);
 }
 
@@ -84,26 +84,4 @@ static	void	cub3d_setup_init(t_data *new, int fd)
 		new->error_check = EXIT_FAILURE;
 		return ;
 	}
-}
-
-int	cub3d_convert_rgb(t_colour rgb)
-{
-	char	*temp1;
-	char	*temp2;
-	char	*temp3;
-	char	*temp4;
-	int		ret;
-
-	temp1 = ft_convert2hexa(rgb.red);
-	temp2 = ft_convert2hexa(rgb.green);
-	temp3 = ft_convert2hexa(rgb.blue);
-	temp4 = ft_strjoin(temp1, temp2);
-	free(temp1);
-	temp1 = ft_strjoin(temp4, temp3);
-	ret = ft_convertfromhexa(temp1);
-	free(temp1);
-	free(temp2);
-	free(temp3);
-	free(temp4);
-	return (ret);
 }

@@ -57,42 +57,48 @@ INCLUDES = 		$(MLX_INC) $(FT_INC)
 ################################## SRCS & OBJS #################################
 ################################################################################
 ifeq ($(uname_S), Linux)
-	SRCS =		$(SRCDIR)cub3d.c				\
-				$(SRCDIR)cub3d_def.c			\
-				$(SRCDIR)cub3d_mlx.c			\
-				$(SRCDIR)cub3d_linux.c			\
-				$(SRCDIR)cub3d_set.c			\
-				$(SRCDIR)cub3d_keys.c			\
-				$(SRCDIR)cub3d_pop_map.c		\
-				$(SRCDIR)cub3d_raycast.c		\
-				$(SRCDIR)cub3d_raycast_setup.c	\
-				$(SRCDIR)cub3d_map_check.c		\
-				$(SRCDIR)cub3d_wall.c			\
-				$(SRCDIR)cub3d_space.c			\
-				$(SRCDIR)cub3d_utils.c			\
-				$(SRCDIR)cub3d_textures.c		\
-				$(SRCDIR)cub3d_minimap.c		\
-				$(SRCDIR)cub3d_map_parsing.c	\
+	SRCS =		$(SRCDIR)cub3d.c					\
+				$(SRCDIR)cub3d_def.c				\
+				$(SRCDIR)cub3d_mlx.c				\
+				$(SRCDIR)cub3d_linux.c				\
+				$(SRCDIR)cub3d_set.c				\
+				$(SRCDIR)cub3d_keys.c				\
+				$(SRCDIR)cub3d_pop_map.c			\
+				$(SRCDIR)cub3d_raycast.c			\
+				$(SRCDIR)cub3d_raycast_setup.c		\
+				$(SRCDIR)cub3d_map_check.c			\
+				$(SRCDIR)cub3d_wall.c				\
+				$(SRCDIR)cub3d_space.c				\
+				$(SRCDIR)cub3d_utils.c				\
+				$(SRCDIR)cub3d_textures.c			\
+				$(SRCDIR)cub3d_minimap.c			\
+				$(SRCDIR)cub3d_map_parsing.c		\
+				$(SRCDIR)cub3d_parsing_utils.c		\
+				$(SRCDIR)cub3d_minimap_utils.c		\
+				$(SRCDIR)cub3d_colours.c			\
 
 endif
 ifeq ($(uname_S), Darwin)
-	SRCS =		$(SRCDIR)cub3d.c				\
-				$(SRCDIR)cub3d_def.c			\
-				$(SRCDIR)cub3d_mlx.c			\
-				$(SRCDIR)cub3d_linux.c			\
-				$(SRCDIR)cub3d_set.c			\
-				$(SRCDIR)cub3d_keys.c			\
-				$(SRCDIR)cub3d_pop_map.c		\
-				$(SRCDIR)cub3d_raycast.c		\
-				$(SRCDIR)cub3d_raycast_setup.c	\
-				$(SRCDIR)cub3d_map_check.c		\
-				$(SRCDIR)cub3d_wall.c			\
-				$(SRCDIR)cub3d_space.c			\
-				$(SRCDIR)cub3d_utils.c			\
-				$(SRCDIR)cub3d_textures.c		\
-				$(SRCDIR)cub3d_minimap.c		\
-				$(SRCDIR)cub3d_map_parsing.c	\
-				
+	SRCS =		$(SRCDIR)cub3d.c					\
+				$(SRCDIR)cub3d_def.c				\
+				$(SRCDIR)cub3d_mlx.c				\
+				$(SRCDIR)cub3d_linux.c				\
+				$(SRCDIR)cub3d_set.c				\
+				$(SRCDIR)cub3d_keys.c				\
+				$(SRCDIR)cub3d_pop_map.c			\
+				$(SRCDIR)cub3d_raycast.c			\
+				$(SRCDIR)cub3d_raycast_setup.c		\
+				$(SRCDIR)cub3d_map_check.c			\
+				$(SRCDIR)cub3d_wall.c				\
+				$(SRCDIR)cub3d_space.c				\
+				$(SRCDIR)cub3d_utils.c				\
+				$(SRCDIR)cub3d_textures.c			\
+				$(SRCDIR)cub3d_minimap.c			\
+				$(SRCDIR)cub3d_map_parsing.c		\
+				$(SRCDIR)cub3d_parsing_utils.c		\
+				$(SRCDIR)cub3d_minimap_utils.c		\
+				$(SRCDIR)cub3d_colours.c			\
+
 endif
 
 ################################################################################
