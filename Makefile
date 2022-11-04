@@ -4,7 +4,7 @@ ifeq ($(uname_S), Linux)
 	MINILIBX_DIRECTORY = ./minilibx
 	MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
 	MLX_INC	= -I minilibx_linux
-	MLX_LNK	= -Lminilibx_linux -lm -lmlx -lXext -lX11 -Iminilibx-linux
+	MLX_LNK	= -Lminilibx -lm -lmlx -lXext -lX11 -Iminilibx-linux
 endif
 ifeq ($(uname_S), Darwin)
 	MINILIBX_DIRECTORY = ./minilibx
