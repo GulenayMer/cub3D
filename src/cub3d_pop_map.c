@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:19:11 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/03 15:13:13 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:16:28 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y)
 	data->player_check = 0;
 	if (line == NULL)
 		return (EXIT_FAILURE);
-	while (line[coord.x] != '\0')
+	while (coord.x < data->map->count_x - 1)
 	{
 		cub3d_new_cell(data, line[coord.x], matrix, coord);
 		if (data->error_check == EXIT_FAILURE)
