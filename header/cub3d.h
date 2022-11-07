@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/04 14:19:07 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:33:52 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #  define WIDTH		1280
 # endif
 
-# define TEX_SIZE	256
+# define TEX_SIZE	64
 # define X_OFFSET WIDTH - 30
 # define Y_OFFSET 30
 # define TRUE 1

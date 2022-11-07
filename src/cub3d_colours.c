@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:56:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/04 14:23:18 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:51:41 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,36 @@
 static int	cub3d_ctrl_colour(char **colours);
 static void	cub3d_free_colours(char **args);
 
+int	cub3d_list_len(char **list)
+{
+	int	i;
+
+	i = 0;
+	while (list[i] != NULL)
+		i += 1;
+	return (i);
+}
+
+int	cub3d_check_digits(char **list)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (list[i] != NULL)
+	{
+		j = 0;
+		while(j < (int) ft_strlen(list[i]))
+		{
+			if (ft_isdigit(list[i][j]) == 0)
+				return (EXIT_FAILURE);
+			j += 1;
+		}
+		i += 1;
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	cub3d_set_colours(t_data *data, char *line, int type)
 {
 	char	**colours;
@@ -22,6 +52,12 @@ int	cub3d_set_colours(t_data *data, char *line, int type)
 
 	ctrl = ft_strtrim(line, "\n");
 	colours = ft_split(ctrl, ',');
+	if (cub3d_list_len(colours) != 3 || cub3d_check_digits(colours) == EXIT_FAILURE)
+	{
+		free(ctrl);
+		cub3d_free_colours(colours);
+		return (EXIT_FAILURE);	
+	}
 	free(ctrl);
 	if (cub3d_ctrl_colour(colours) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
@@ -45,10 +81,21 @@ int	cub3d_set_colours(t_data *data, char *line, int type)
 
 static int	cub3d_ctrl_colour(char **colours)
 {
-	if ((ft_atoi(colours[0]) > 255 || ft_atoi(colours[0]) < 0)
-		|| (ft_atoi(colours[1]) > 255 || ft_atoi(colours[1]) < 0)
-		|| (ft_atoi(colours[2]) > 255 || ft_atoi(colours[2]) < 0))
+	if (ft_atoi(colours[0]) > 255 || ft_atoi(colours[0]) < 0)
+	{
+		cub3d_free_colours(colours);
 		return (EXIT_FAILURE);
+	}
+	else if (ft_atoi(colours[1]) > 255 || ft_atoi(colours[1]) < 0)
+	{
+		cub3d_free_colours(colours);
+		return (EXIT_FAILURE);
+	}
+	else if (ft_atoi(colours[2]) > 255 || ft_atoi(colours[2]) < 0)
+	{
+		cub3d_free_colours(colours);
+		return (EXIT_FAILURE);
+	}
 	else
 		return (EXIT_SUCCESS);
 }
@@ -77,8 +124,8 @@ int	cub3d_colour_check(t_data *data, char *line, char *type)
 	{
 		if (cub3d_set_colours(data, &line[2], 1) == EXIT_FAILURE)
 		{
-			ft_printf(STDERR_FILENO, INVALID_VALUES, data->name);
 			data->error_check = 1;
+			return (EXIT_FAILURE);
 		}
 		data->tex.val.f += 1;
 		return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/07 13:39:38 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:00:41 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_data	*cub3d_setup(char *map)
 void	*cub3d_error_clean(t_data *new, int fd)
 {
 	close(fd);
-	cub3d_destroyer(new, EXIT_FAILURE);
+	cub3d_destroyer(new, EXIT_SUCCESS);
 	return (NULL);
 }
 
