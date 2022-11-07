@@ -82,7 +82,7 @@ ifeq ($(uname_S), Darwin)
 	SRCS =		$(SRCDIR)cub3d.c					\
 				$(SRCDIR)cub3d_def.c				\
 				$(SRCDIR)cub3d_mlx.c				\
-				$(SRCDIR)cub3d_linux.c				\
+				$(SRCDIR)cub3d_mac.c				\
 				$(SRCDIR)cub3d_set.c				\
 				$(SRCDIR)cub3d_keys.c				\
 				$(SRCDIR)cub3d_pop_map.c			\

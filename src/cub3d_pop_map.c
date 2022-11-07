@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:19:11 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/04 16:16:28 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:51:15 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,18 @@ int	cub3d_fill_map(t_data *data, char *line, t_matrix *matrix, int y)
 		return (EXIT_FAILURE);
 	while (coord.x < data->map->count_x - 1)
 	{
-		cub3d_new_cell(data, line[coord.x], matrix, coord);
+		if (coord.x > (int) ft_strlen(line))
+			cub3d_new_cell(data, ' ', matrix, coord);
+		else
+			cub3d_new_cell(data, line[coord.x], matrix, coord);
 		if (data->error_check == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 		coord.x += 1;
 	}
-	cub3d_new_cell(data, line[coord.x], matrix, coord);
+	if (coord.x > (int) ft_strlen(line))
+		cub3d_new_cell(data, ' ', matrix, coord);
+	else
+		cub3d_new_cell(data, line[coord.x], matrix, coord);
 	if (data->error_check == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
