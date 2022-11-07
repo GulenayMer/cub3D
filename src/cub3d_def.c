@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/04 14:08:13 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:39:38 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_data	*cub3d_init(char *map)
 	data->ctr_x = WIDTH / 2;
 	data->mouse.x = WIDTH / 2;
 	data->mouse.y = HEIGHT / 2;
+	data->player_check = 0;
 	cub3d_mlx_init(data);
 	data->error_check = cub3d_texture_init(data, block);
 	return (data);
