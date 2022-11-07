@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:12:36 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/04 14:16:59 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:21:17 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ You must provide a .cub file.\n"
 # define WALL_ERR "Error\ncub3D: Floor must be surrounded by the walls!\n"
 
 # define SPACE_ERR "Error\ncub3D: There are empty spaces inside the map!\n"
+
+# define NO_PLAYER "Error\ncub3D: There are no players inside the map!\n"
 #endif

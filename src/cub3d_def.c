@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/07 16:00:41 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:33:11 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ static void		cub3d_setup_init(t_data *new, int fd);
 t_data	*cub3d_init(char *map)
 {
 	t_data	*data;
-	int		block;
 
-	block = TEX_SIZE;
 	data = cub3d_setup(map);
 	if (data == NULL)
 		return (NULL);
@@ -31,7 +29,7 @@ t_data	*cub3d_init(char *map)
 	data->mouse.y = HEIGHT / 2;
 	data->player_check = 0;
 	cub3d_mlx_init(data);
-	data->error_check = cub3d_texture_init(data, block);
+	data->error_check = cub3d_texture_init(data);
 	return (data);
 }
 

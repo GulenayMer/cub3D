@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/07 14:33:52 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:33:31 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 #  define WIDTH		1280
 # endif
 
-# define TEX_SIZE	64
 # define X_OFFSET WIDTH - 30
 # define Y_OFFSET 30
 # define TRUE 1
@@ -178,6 +177,7 @@ typedef struct s_data
 	t_draw		draw;
 	t_image		image;
 	t_coord		mouse;
+	int			tex_size;
 	char		*name;
 	int			player_check;
 	int			ctr_x;
@@ -209,7 +209,7 @@ long long	cub3d_get_time(void);
 void		cub3d_draw_line(t_data *data, int col, t_draw draw);
 void		cub3d_check_fps(t_data *data);
 int			error_check_walls(t_data *data);
-int			cub3d_texture_init(t_data *data, int block);
+int			cub3d_texture_init(t_data *data);
 void		cub3d_get_texture(t_data *data);
 void		cub3d_calculate_wallx(t_data *data);
 void		cub3d_rotate_left(t_data *data, double rotate_speed);

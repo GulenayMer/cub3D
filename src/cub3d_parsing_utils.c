@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:05:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/04 14:43:02 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:20:43 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ int	cub3d_map_parsing(t_data *data, char *line, int fd)
 	cub3d_fill_map(data, line, data->map, 0);
 	if (cub3d_map_end(data, line, fd) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	if (data->player_check == 0)
+	{
+		ft_printf(STDERR_FILENO, NO_PLAYER);
+		data->error_check = EXIT_FAILURE;
+		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:05:37 by jrocha            #+#    #+#             */
-/*   Updated: 2022/10/28 16:52:17 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/07 16:36:46 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	cub3d_mlx_init(t_data *data)
 			&data->image.bits_per_pixel,
 			&data->image.line_length,
 			&data->image.endian);
+	mlx_mouse_hide(data->mlx, data->win);
 }
 
 void	cub3d_mlx_pixel_put(t_data *data, int x, int y, int color)
