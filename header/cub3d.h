@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/07 16:33:31 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:03:26 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #  define WIDTH		1280
 # endif
 
-# define X_OFFSET WIDTH - 30
+# define X_OFFSET WIDTH
 # define Y_OFFSET 30
 # define TRUE 1
 # define FALSE 0
@@ -105,7 +105,7 @@ typedef struct s_tex_validator
 	int			ea;
 	int			c;
 	int			f;
-} t_tex_validator;
+}	t_tex_validator;
 
 typedef struct s_textures
 {
@@ -233,4 +233,6 @@ int			cub3d_colour_check(t_data *data, char *line, char *type);
 void		cub3d_draw_minimap(t_data *data, int tile, int offset_x,
 				int offset_y);
 void		cub3d_draw_player(t_data *data);
+int			cub3d_list_len(char **list);
+int			cub3d_check_digits(char **list);
 #endif

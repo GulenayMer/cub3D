@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_linux.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:56:28 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/07 16:51:52 by jrocha           ###   ########.fr       */
+/*   Updated: 2022/11/08 12:08:01 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	cub3d_destroyer(t_data *data, int exit_status)
 	if (exit_status == EXIT_SUCCESS)
 		exit(exit_status);
 	else
-		return(exit_status);
+		return (exit_status);
 }
 
 static void	cub3d_destroyer_helper(t_data *data)

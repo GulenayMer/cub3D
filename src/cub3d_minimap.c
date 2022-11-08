@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:27:38 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/04 11:54:50 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:59:38 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	cub3d_minimap(t_data *data)
 		}
 		data->minimap.map.x = 0;
 		data->minimap.map.y += 1;
-		data->minimap.iter.x = X_OFFSET - data->minimap.size.x;
+		data->minimap.iter.x = X_OFFSET - 30 - data->minimap.size.x;
 		data->minimap.iter.y += data->minimap.unit.y;
 	}
 	cub3d_draw_player(data);
@@ -64,6 +64,6 @@ static void	cub3d_minimap_setup(t_data *data)
 	data->minimap.size.y = data->minimap.unit.y * data->map->count_y - 1;
 	data->minimap.map.x = 0;
 	data->minimap.map.y = 0;
-	data->minimap.iter.x = X_OFFSET - data->minimap.size.x;
+	data->minimap.iter.x = X_OFFSET - 30 - data->minimap.size.x;
 	data->minimap.iter.y = Y_OFFSET;
 }

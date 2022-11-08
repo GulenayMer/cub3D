@@ -76,6 +76,7 @@ ifeq ($(uname_S), Linux)
 				$(SRCDIR)cub3d_parsing_utils.c		\
 				$(SRCDIR)cub3d_minimap_utils.c		\
 				$(SRCDIR)cub3d_colours.c			\
+				$(SRCDIR)cub3d_colours_utils.c		\
 
 endif
 ifeq ($(uname_S), Darwin)
@@ -98,6 +99,7 @@ ifeq ($(uname_S), Darwin)
 				$(SRCDIR)cub3d_parsing_utils.c		\
 				$(SRCDIR)cub3d_minimap_utils.c		\
 				$(SRCDIR)cub3d_colours.c			\
+				$(SRCDIR)cub3d_colours_utils.c		\
 
 endif
 
