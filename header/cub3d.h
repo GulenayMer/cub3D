@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/08 12:03:26 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:31:18 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ int			check_walls(t_data *data, int x, int y);
 int			check_spaces(t_data *data, int x, int y);
 int			cub3d_map_parsing(t_data *data, char *line, int fd);
 int			cub3d_set_colours(t_data *data, char *line, int type);
-void		*cub3d_error_clean(t_data *new, int fd);
+void		*cub3d_error_clean(t_data *new, int fd, int type);
 int			cub3d_check_max_len(char *map);
 void		cub3d_validator_init(t_data *data);
 int			cub3d_validator(t_data *data);
