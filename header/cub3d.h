@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:13:21 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/08 13:31:18 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:17:17 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ typedef struct s_pos
 
 typedef struct s_fps
 {
-	long long	cur_time;
-	long long	old_time;
-	double		frame_time;
 	double		move_speed;
 	double		rotate_speed;
 }	t_fps;
@@ -205,7 +202,7 @@ void		cub3d_find_player(t_data *data);
 void		cub3d_direction_set(t_data *data, char cell);
 void		cub3d_init_dir_plane(t_data *data, t_coord coord, char cell);
 void		cub3d_init_plane(t_data *data, char cell);
-long long	cub3d_get_time(void);
+int			cub3d_clean_line(char *line, int fd);
 void		cub3d_draw_line(t_data *data, int col, t_draw draw);
 void		cub3d_check_fps(t_data *data);
 int			error_check_walls(t_data *data);
@@ -229,10 +226,11 @@ int			cub3d_validator(t_data *data);
 void		cub3d_map_init(t_data *new);
 int			cub3d_map_end(t_data *new, char *line, int fd);
 int			cub3d_check_tex_path(char *path);
-int			cub3d_colour_check(t_data *data, char *line, char *type);
+int			cub3d_colour_check(t_data *data, char *line, char *type, int fd);
 void		cub3d_draw_minimap(t_data *data, int tile, int offset_x,
 				int offset_y);
 void		cub3d_draw_player(t_data *data);
 int			cub3d_list_len(char **list);
 int			cub3d_check_digits(char **list);
+char		*cub3d_get_line(char *line, int fd);
 #endif

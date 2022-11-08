@@ -111,7 +111,7 @@ EXEC =		cub3D
 
 VAL =		valgrind -s --track-fds=yes --track-origins=yes --leak-check=full --leak-check=full --show-leak-kinds=all --show-reachable=yes
 
-RUN =		./cub3D map/other.cub
+RUN =		./cub3D maps/other.cub
 
 ################################################################################
 ################################### COLOURS ####################################

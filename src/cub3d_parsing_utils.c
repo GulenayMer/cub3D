@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_parsing_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:05:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/07 16:20:43 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:17:48 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*cub3d_parsing_main_loop(t_data *data, char *line, int fd);
 static int	cub3d_texture_check_ns(t_data *data, char *line, char *card);
 static int	cub3d_texture_check_ew(t_data *data, char *line, char *card);
-static int	cub3d_texture_check(t_data *data, char *line, char *card);
+static int	cub3d_texture_check(t_data *data, char *line, char *card, int fd);
 
 int	cub3d_map_parsing(t_data *data, char *line, int fd)
 {
@@ -46,25 +46,25 @@ static char	*cub3d_parsing_main_loop(t_data *data, char *line, int fd)
 	while (line != NULL && data->error_check == 0)
 	{
 		if (ft_strncmp(line, "NO ", 3) == 0)
-			data->error_check = cub3d_texture_check(data, line, "NO ");
+			data->error_check = cub3d_texture_check(data, line, "NO ", fd);
 		else if (ft_strncmp(line, "SO ", 3) == 0)
-			data->error_check = cub3d_texture_check(data, line, "SO ");
+			data->error_check = cub3d_texture_check(data, line, "SO ", fd);
 		else if (ft_strncmp(line, "WE ", 3) == 0)
-			data->error_check = cub3d_texture_check(data, line, "WE ");
+			data->error_check = cub3d_texture_check(data, line, "WE ", fd);
 		else if (ft_strncmp(line, "EA ", 3) == 0)
-			data->error_check = cub3d_texture_check(data, line, "EA ");
+			data->error_check = cub3d_texture_check(data, line, "EA ", fd);
 		else if (ft_strncmp("F ", line, 2) == 0)
-			data->error_check = cub3d_colour_check(data, line, "F ");
+			data->error_check = cub3d_colour_check(data, line, "F ", fd);
 		else if (ft_strncmp("C", line, 1) == 0)
-			data->flag = cub3d_colour_check(data, line, "C ");
+			data->flag = cub3d_colour_check(data, line, "C ", fd);
 		else if (ft_strncmp("\n", line, 1) == 0)
 			data->counter += 1;
 		else if (ft_strncmp("\n", line, 1) != 0 && data->flag == 1)
 			break ;
 		else
 			data->error_check = 1;
-		free(line);
-		line = get_next_line(fd);
+		if (data->error_check == 0)
+			line = cub3d_get_line(line, fd);
 	}
 	return (line);
 }
@@ -75,7 +75,10 @@ static int	cub3d_texture_check_ns(t_data *data, char *line, char *card)
 	{
 		data->tex.no.path = ft_strtrim(&line[3], "\n");
 		if (cub3d_check_tex_path(data->tex.no.path) == EXIT_FAILURE)
+		{
+			data->error_check = EXIT_FAILURE;
 			return (EXIT_FAILURE);
+		}
 		data->tex.val.no += 1;
 		return (EXIT_SUCCESS);
 	}
@@ -83,7 +86,10 @@ static int	cub3d_texture_check_ns(t_data *data, char *line, char *card)
 	{
 		data->tex.so.path = ft_strtrim(&line[3], "\n");
 		if (cub3d_check_tex_path(data->tex.so.path) == EXIT_FAILURE)
+		{
+			data->error_check = EXIT_FAILURE;
 			return (EXIT_FAILURE);
+		}
 		data->tex.val.so += 1;
 		return (EXIT_SUCCESS);
 	}
@@ -96,7 +102,10 @@ static int	cub3d_texture_check_ew(t_data *data, char *line, char *card)
 	{
 		data->tex.we.path = ft_strtrim(&line[3], "\n");
 		if (cub3d_check_tex_path(data->tex.we.path) == EXIT_FAILURE)
+		{
+			data->error_check = EXIT_FAILURE;
 			return (EXIT_FAILURE);
+		}
 		data->tex.val.we += 1;
 		return (EXIT_SUCCESS);
 	}
@@ -104,14 +113,17 @@ static int	cub3d_texture_check_ew(t_data *data, char *line, char *card)
 	{
 		data->tex.ea.path = ft_strtrim(&line[3], "\n");
 		if (cub3d_check_tex_path(data->tex.ea.path) == EXIT_FAILURE)
+		{
+			data->error_check = EXIT_FAILURE;
 			return (EXIT_FAILURE);
+		}
 		data->tex.val.ea += 1;
 		return (EXIT_SUCCESS);
 	}
 	return (EXIT_FAILURE);
 }
 
-static int	cub3d_texture_check(t_data *data, char *line, char *card)
+static int	cub3d_texture_check(t_data *data, char *line, char *card, int fd)
 {
 	if (ft_strncmp(card, line, 3) == 0)
 	{
@@ -120,5 +132,6 @@ static int	cub3d_texture_check(t_data *data, char *line, char *card)
 		if (cub3d_texture_check_ew(data, line, card) == EXIT_SUCCESS)
 			return (EXIT_SUCCESS);
 	}
+	cub3d_clean_line(line, fd);
 	return (EXIT_FAILURE);
 }

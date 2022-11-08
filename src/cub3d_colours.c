@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_colours.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:56:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/08 12:23:12 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:08:03 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,14 @@ static void	cub3d_free_colours(char **args)
 	free(args);
 }
 
-int	cub3d_colour_check(t_data *data, char *line, char *type)
+int	cub3d_colour_check(t_data *data, char *line, char *type, int fd)
 {
 	if (ft_strncmp("F ", type, 2) == 0)
 	{
 		if (cub3d_set_colours(data, &line[2], 1) == EXIT_FAILURE)
 		{
 			data->error_check = 1;
+			cub3d_clean_line(line, fd);
 			return (EXIT_FAILURE);
 		}
 		data->tex.val.f += 1;
@@ -118,6 +119,7 @@ int	cub3d_colour_check(t_data *data, char *line, char *type)
 		{
 			ft_printf(STDERR_FILENO, INVALID_VALUES, data->name);
 			data->error_check = 1;
+			cub3d_clean_line(line, fd);
 		}
 		data->tex.val.c += 1;
 		return (TRUE);

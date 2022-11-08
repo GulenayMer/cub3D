@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jrocha <jrocha@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:05:53 by jrocha            #+#    #+#             */
-/*   Updated: 2022/11/08 13:30:58 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:14:27 by jrocha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_data	*cub3d_init(char *map)
 	data = cub3d_setup(map);
 	if (data == NULL)
 		return (NULL);
-	data->fps.cur_time = 0;
-	data->fps.old_time = 0;
+	data->fps.move_speed = 0.4;
+	data->fps.rotate_speed = 0.2;
 	data->ctr_x = WIDTH / 2;
 	data->mouse.x = WIDTH / 2;
 	data->mouse.y = HEIGHT / 2;
