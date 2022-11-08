@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:56:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/11/07 15:51:41 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:45:57 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	cub3d_check_digits(char **list)
 	while (list[i] != NULL)
 	{
 		j = 0;
-		while(j < (int) ft_strlen(list[i]))
+		while (j < (int) ft_strlen(list[i]))
 		{
 			if (ft_isdigit(list[i][j]) == 0)
 				return (EXIT_FAILURE);
@@ -51,12 +51,18 @@ int	cub3d_set_colours(t_data *data, char *line, int type)
 	char	*ctrl;
 
 	ctrl = ft_strtrim(line, "\n");
+	if (ctrl[ft_strlen(ctrl) - 1] == ',')
+	{
+		free(ctrl);
+		return (EXIT_FAILURE);
+	}
 	colours = ft_split(ctrl, ',');
-	if (cub3d_list_len(colours) != 3 || cub3d_check_digits(colours) == EXIT_FAILURE)
+	if (cub3d_list_len(colours) != 3
+		|| cub3d_check_digits(colours) == EXIT_FAILURE)
 	{
 		free(ctrl);
 		cub3d_free_colours(colours);
-		return (EXIT_FAILURE);	
+		return (EXIT_FAILURE);
 	}
 	free(ctrl);
 	if (cub3d_ctrl_colour(colours) == EXIT_FAILURE)
