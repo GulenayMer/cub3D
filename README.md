@@ -27,5 +27,5 @@ To compile the program, the provided Makefile can be used. There we defined some
 **make clean**: This command will remove any generated files and clean up the project directory.<br>
 
 ## Contributors
-jpa-rocha
-GulenayMer
+jpa-rocha<br>
+GulenayMer<br>
