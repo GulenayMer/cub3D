@@ -21,10 +21,10 @@ We explored the playful practical applications of mathematics based on the docum
 
 ## Usage
 
-To compile the program, the provided Makefile can be used. There we defined some rules and they can be run by these basic commands:
-**make**: This command compiles the necessary source code files and links them to create the final executable.
-**make test**: This command runs valgrind for memory leaks and is used for debugging purposes.
-**make clean**: This command will remove any generated files and clean up the project directory.
+To compile the program, the provided Makefile can be used. There we defined some rules and they can be run by these basic commands:<br>
+**make**: This command compiles the necessary source code files and links them to create the final executable.<br>
+**make test**: This command runs valgrind for memory leaks and is used for debugging purposes.<br>
+**make clean**: This command will remove any generated files and clean up the project directory.<br>
 
 ## Contributors
 jpa-rocha
